@@ -157,7 +157,13 @@ $ cafetutorial_report_analysis.py -i resultfile_run2.cafe -o summary_run_2_cafe
 
 ### Families with signal of expansion and contraction can be retrieve from CAFE outputs, then this script will carry out enrichment test in protein families with significant expansion and contraction 
 
-* https://github.com/asishallab/SlydGeneFamsAnalyses/enrichedAnnosInExpContrFams.R 
+*For InterPro function annotation (domains) 
+
+* https://github.com/asishallab/SlydGeneFamsAnalyses/blob/icruz/exec/enrichedAnnosInExpContrFams.R
+
+*For Mapman4 enrichment funtion annotation
+
+* https://github.com/asishallab/SlydGeneFamsAnalyses/blob/icruz/exec/enrichedMapManInMappFams.R 
 
 ### Running MAPP for physicochemical divergence 
 
@@ -218,4 +224,6 @@ for d in *; do if [ -d "$d" ]; then ( cd "$d" && python /LUSTRE/Genetica/ivan/pr
 
 ### Enrichment tests can be done using InterProscan and Mapman4 annotations with this script 
 
-* https://github.com/asishallab/SlydGeneFamsAnalyses/identifyDomainsAtSelectedSites.R
+*Read also these scripts enrichedMapManInMappFams.R and enrichedAnnosInExpContrFams.R
+
+* https://github.com/asishallab/SlydGeneFamsAnalyses/blob/icruz/exec/identifyDomainsAtSelectedSites.R
