@@ -12,8 +12,10 @@
     fastqc output_Tic23_S155_L006_R1_001_paired.fastq output_Tic23_S155_L006_R2_001_paired.fastq
 
 ### Genome size estimation with Kmergenie
+   reads_files contains the name of PE reads from Illumina per line
+    /LUSTRE/Genetica/ivan/bin_app/kmergenie-1.7048/kmergenie reads_file.txt #
 
-    /LUSTRE/Genetica/ivan/bin_app/kmergenie-1.7048/kmergenie reads_file.txt #reads_files contains the name of PE reads from Illumina per line
+Illumina reads are ready to use and now a little bit of work with PacBio sequences
 
 ### Transform subreads in .bam format of PacBio Sequel to fastq
 
@@ -21,31 +23,35 @@
 
 ### Canu assembly
 
-$ canu -d ensamble_teo1_pacbio -p datura_tic23 genomeSize=1.5g gridOptionscormhap="--mem=40g" merylMemory=62 batMemory=62 corMhapSensitivity=high correctedErrorRate=0.105 corOutCoverage=100 corMinCoverage=0 gridOptions="--time=168:00:00 --partition=FAST" gnuplotTested=true -pacbio-raw /home/icruz/data/secuencias_pacbio/bamfiles_tic_g/tic23.subreads.fastq 1>run2.log &
+    canu -d ensamble_tic_pacbio -p datura_tic23 genomeSize=1.5g gridOptionscormhap="--mem=40g" merylMemory=62 batMemory=62 corMhapSensitivity=high correctedErrorRate=0.105 corOutCoverage=100 corMinCoverage=0 gridOptions="--time=168:00:00 --partition=FAST" gnuplotTested=true -pacbio-raw /home/icruz/data/secuencias_pacbio/bamfiles_tic_g/tic23.subreads.fastq 1>run2.log
 
-### Generate contigs only with the Illumina PE reads using SparseAssembler
+### Generate contigs only with the Illumina PE reads using SparseAssembler program
 
-$ SparseAssembler LD 0 k 73 g 15 NodeCovTh 1 EdgeCovTh 0 GS 15000000 i1 /home/icruz/data/sec_illumina_tic23/output_Tic23_S155_L006_R1_001_paired.fastq i2 /home/icruz/data/illumina_tic23/output_Tic23_S155_L006_R2_001_paired.fastq
+    SparseAssembler LD 0 k 73 g 15 NodeCovTh 1 EdgeCovTh 0 GS 15000000 i1 /home/icruz/data/sec_illumina_tic23/output_Tic23_S155_L006_R1_001_paired.fastq i2 /home/icruz/data/illumina_tic23/output_Tic23_S155_L006_R2_001_paired.fastq
 
 ### Hybrid assembly using raw reads from PacBio and contigs.txt file from SparseAssembler 
 
-$ DBG2OLC LD 1 k 17 AdaptiveTh 0.001 KmerCovTh 3 MinOverlap 10 RemoveChimera 1 Contigs /home/icruz/data/sec_illumina_tic23/Contigs.txt f /home/icruz/data/sec_illumina_tic23/tic23.subreads.fastq 
+    DBG2OLC LD 1 k 17 AdaptiveTh 0.001 KmerCovTh 3 MinOverlap 10 RemoveChimera 1 Contigs /home/icruz/data/sec_illumina_tic23/Contigs.txt f /home/icruz/data/sec_illumina_tic23/tic23.subreads.fastq
+  
+ A file called scaffolds.fasta is generated, this is the hybrid assembly
 
-### alignment between Canu (query) assembly and DBG2OLC (reference) assembly
+### Alignment between Canu (query) assembly and DBG2OLC (reference) assembly
 
-$ /home/icruz/MUMmer3.23/nucmer --mumreference -l 100 self.fasta hybrid.fasta 
+    /home/icruz/MUMmer3.23/nucmer --mumreference -l 100 self.fasta hybrid.fasta 
+    
+ self.fasta corresponds to the Canu assemblt file and hybrid.fasta corresponds to the hybrid assembly from DBG2OLC
 
 ### Quickmerge between both assemblies using the output out.delta from Nucmer
 
-$ quickmerge -d out.delta -q hybrid.fasta -r self.fasta -hco 3.0 -c 1.1 -l 70000 -ml 7000
+    quickmerge -d out.delta -q hybrid.fasta -r self.fasta -hco 3.0 -c 1.1 -l 70000 -ml 7000
 
-### Polishing and scaffolding
+## Polishing and scaffolding
 
 ### Bowtie2 was used to index the genome and we aligned the raw Illumina reads to the merged genome
 
-$ bowtie2-build --threads 30 genome_tic.fasta bt2_index_genomeTic
+    bowtie2-build --threads 30 genome_tic.fasta bt2_index_genomeTic
 
-$ bowtie2 -x bt2_index_genomeTic -1 ../../../../../../sec_illumina_tic23/output_Tic23_S155_L006_R1_001_paired.fastq -2 ../../../../../../sec_illumina_tic23/output_Tic23_S155_L006_R2_001_paired.fastq -S tic_gen.sam
+    bowtie2 -x bt2_index_genomeTic -1 ../../../../../../sec_illumina_tic23/output_Tic23_S155_L006_R1_001_paired.fastq -2 ../../../../../../sec_illumina_tic23/output_Tic23_S155_L006_R2_001_paired.fastq -S tic_gen.sam
 
 $ samtools view -Sb tic_gen.sam > tic_gen.bam
 
