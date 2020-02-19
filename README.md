@@ -5,19 +5,19 @@
 
 ### Firts step is trimming poor quality sequences
 
-$ java -jar ~/Trimmomatic-0.33/trimmomatic-0.33.jar PE -phred30 Tic23_S155_L006_R1_001.fastq Tic23_S155_L006_R2_001.fastq output_Tic23_S155_L006_R1_001_paired.fastq output_Tic23_S155_L006_R1_001_unpaired.fastq output_Tic23_S155_L006_R2_001_paired.fastq output_Tic23_S156_L006_R2_001_unpaired.fastq SLIDINGWINDOW:4:15 MINLEN:36
+    java -jar ~/Trimmomatic-0.33/trimmomatic-0.33.jar PE -phred30 Tic23_S155_L006_R1_001.fastq Tic23_S155_L006_R2_001.fastq output_Tic23_S155_L006_R1_001_paired.fastq output_Tic23_S155_L006_R1_001_unpaired.fastq output_Tic23_S155_L006_R2_001_paired.fastq output_Tic23_S156_L006_R2_001_unpaired.fastq SLIDINGWINDOW:4:15 MINLEN:36
 
 ### Fastqc program was used to visualize the quality of the sequences
 
-$ fastqc output_Tic23_S155_L006_R1_001_paired.fastq output_Tic23_S155_L006_R2_001_paired.fastq
+    fastqc output_Tic23_S155_L006_R1_001_paired.fastq output_Tic23_S155_L006_R2_001_paired.fastq
 
 ### Genome size estimation with Kmergenie
 
-$ /LUSTRE/Genetica/ivan/bin_app/kmergenie-1.7048/kmergenie reads_file.txt #reads_files contain PE reads from Illumina
+    /LUSTRE/Genetica/ivan/bin_app/kmergenie-1.7048/kmergenie reads_file.txt #reads_files contains the name of PE reads from Illumina per line
 
 ### Transform subreads in .bam format of PacBio Sequel to fastq
 
-$  bamtools convert -format fastq -in output_tic_pacbio_merged.bam -out tic23.subreads.fastq
+    bamtools convert -format fastq -in output_tic_pacbio_merged.bam -out tic23.subreads.fastq
 
 ### Canu assembly
 
