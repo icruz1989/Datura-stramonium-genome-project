@@ -133,26 +133,11 @@ script is part of https://github.com/NBISweden/GAAS
 
 ### OrthoFinder program to construct Orthologs and paralogs, you can have proteins families from this program
 
-orthofinder -S diamond -T fasttree -M msa -t 8 -a 8 -f /home/icruz/data/orthofinder_all/all_solanaceas__ortho_correction_CAFE/cafe_headers >& run.out &
+    orthofinder -S diamond -T fasttree -M msa -t 8 -a 8 -f /home/icruz/data/orthofinder_all/all_solanaceas__ortho_correction_CAFE/cafe_headers >& run.out &
 
 ### Constructing an ultra metric three 
 
 Make your three ultrametric with the program of your preference, could be with the R package Ape and its Chronos function
-
-#### Scale the rooted tree
-ctrl <- chronos.control(nb.rate.cat = 1)
-tree.rooted.chrono <- chronos(tree.rooted, calibration = chr.df, lambda = 3.2)  # Lambda value obtained from references
-### Round the edge lengths:
-tree.rooted.chrono$edge.length <- round(tree.rooted.chrono$edge.length, digits = 1)
-#' Save the results
-write.tree(tree.rooted.chrono, "./allsol_forCAFE_concate_ml_gamma_rescaled_ultrametric.newick")
-
-#### Plot the tree:
-pdf( "./all_sol_forCAFE_concate_ml_gamma_rescaled_ultrametric.pdf" )
-plot.phylo(tree.rooted.chrono, show.node.label=TRUE)
-edgelabels(tree.rooted.chrono$edge.length)
-axisPhylo()
-dev.off()
 
 ### Protein families expansions and contractions 
 
