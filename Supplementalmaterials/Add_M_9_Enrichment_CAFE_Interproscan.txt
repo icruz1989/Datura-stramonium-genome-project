@@ -1,0 +1,95 @@
+Annotation	P.Value.Adjusted	Annotation.Name
+IPR032675	1.16597562027464e-05	Leucine-rich repeat domain superfamily
+IPR036396	0.00788825000190556	Cytochrome P450 superfamily
+IPR002401	0.00453941845407301	Cytochrome P450, E-class, group I
+IPR001128	0.00517942640382703	Cytochrome P450
+IPR008543	1.14290015382334e-25	Uncharacterised protein family Ycf2
+IPR019557	8.03141332050144e-11	Aminotransferase-like, plant mobile domain
+IPR006904	3.54300297843553e-06	Protein of unknown function DUF716
+IPR036397	0.00346639382086339	Ribonuclease H superfamily
+IPR015300	0.00227701807998442	DNA-binding pseudobarrel domain superfamily
+IPR003480	8.57244057505102e-05	Transferase
+IPR023213	0.000506364694962738	Chloramphenicol acetyltransferase-like domain superfamily
+IPR008949	0.000190959341615375	Isoprenoid synthase domain superfamily
+IPR036408	0.000387846621742638	Photosystem I PsaA/PsaB superfamily
+IPR001280	1.18728617549622e-05	Photosystem I PsaA/PsaB
+IPR007125	0.00579179644262341	Histone H2A/H2B/H3
+IPR009072	5.20013541329866e-07	Histone-fold
+IPR001810	1.04835685971051e-07	F-box domain
+IPR036047	1.11431588301656e-09	F-box-like domain superfamily
+IPR017451	1.03216044469383e-21	F-box associated interaction domain
+IPR036879	1.21271003369215e-35	Transcription factor, MADS-box superfamily
+IPR002100	3.38729039856136e-35	Transcription factor, MADS-box
+IPR012337	0.000113094418416058	Ribonuclease H-like superfamily
+IPR012340	4.15095896119915e-17	Nucleic acid-binding, OB-fold
+IPR036691	9.73524757021667e-10	Endonuclease/exonuclease/phosphatase superfamily
+IPR001951	0.00705652132531428	Histone H4
+IPR019809	0.00227104562540973	Histone H4, conserved site
+IPR000194	0.000231327086848367	ATPase, F1/V1/A1 complex, alpha/beta subunit, nucleotide-binding domain
+IPR036121	0.00827295937109283	ATPase, F1/V1/A1 complex, alpha/beta subunit, N-terminal domain superfamily
+IPR023366	0.00027010310880856	ATP synthase subunit alpha, N-terminal domain-like superfamily
+IPR038376	0.000521657691197261	ATP synthase, alpha subunit, C-terminal domain superfamily
+IPR000793	0.000764887530728945	ATP synthase, alpha subunit, C-terminal
+IPR001906	1.70449454518354e-05	Terpene synthase, N-terminal domain
+IPR036965	0.000136443437109436	Terpene synthase, N-terminal domain superfamily
+IPR008930	0.00114067730134244	Terpenoid cyclases/protein prenyltransferase alpha-alpha toroid
+IPR005630	5.06426150187838e-05	Terpene synthase, metal-binding domain
+IPR025558	1.80294806754392e-11	Domain of unknown function DUF4283
+IPR038005	2.85166663679225e-13	Virus X resistance protein-like, coiled-coil domain
+IPR041118	0.0003412482602113	Rx, N-terminal
+IPR002182	9.73524757021667e-10	NB-ARC
+IPR006936	0.00194921350000857	ALOG domain
+IPR040222	0.00540851156133388	ALOG  family
+IPR004000	7.15729806124166e-09	Actin family
+IPR004001	9.95026406881654e-06	Actin, conserved site
+IPR020902	2.98056290265502e-11	Actin/actin-like conserved site
+IPR002156	2.86416650803605e-11	Ribonuclease H domain
+IPR006243	3.06849009137618e-05	Photosystem I PsaA
+IPR034741	0.00880688768728087	Terpene cyclase-like 1, C-terminal domain
+IPR007641	0.00041279123479449	RNA polymerase Rpb2, domain 7
+IPR015712	3.2924431284313e-14	DNA-directed RNA polymerase, subunit 2
+IPR037033	2.24753291351605e-07	DNA-directed RNA polymerase, subunit 2, hybrid-binding domain superfamily
+IPR007120	1.67506025986601e-07	DNA-directed RNA polymerase, subunit 2, hybrid-binding domain
+IPR008896	1.71372970617523e-21	Protein TIC214
+IPR006534	0.00705652132531428	P-type ATPase, subfamily IIIA
+IPR006527	1.07559236634639e-05	F-box associated domain, type 1
+IPR023393	0.000387846621742638	START-like domain superfamily
+IPR000916	4.27768866082044e-08	Bet v I/Major latex protein
+IPR003008	0.000100104781302461	Tubulin/FtsZ, GTPase domain
+IPR000217	2.18173421796609e-06	Tubulin
+IPR036525	0.00115505834156468	Tubulin/FtsZ, GTPase domain superfamily
+IPR011043	0.00995866392790922	Galactose oxidase/kelch, beta-propeller
+IPR020586	0.00880688768728087	Photosystem I PsaA/PsaB, conserved site
+IPR037034	0.00384212035218263	RNA polymerase Rpb2, domain 2 superfamily
+IPR007642	0.00041279123479449	RNA polymerase Rpb2, domain 2
+IPR007645	0.00110670319618457	RNA polymerase Rpb2, domain 3
+IPR000477	0.000764887530728945	Reverse transcriptase domain
+IPR040256	1.82326342932833e-11	Uncharacterized protein At4g02000-like
+IPR014724	0.000521657691197261	RNA polymerase Rpb2, OB-fold
+IPR000569	8.18557953090598e-07	HECT domain
+IPR035983	8.18557953090598e-07	HECT, E3 ligase catalytic domain
+IPR013838	0.000353460646875219	Beta tubulin, autoregulation binding site
+IPR006564	0.000440247740969484	Zinc finger, PMZ-type
+IPR018289	6.37987722537572e-10	MULE transposase domain
+IPR027806	0.00260415369755516	Harbinger transposase-derived nuclease domain
+IPR004252	2.62598392456604e-20	Probable transposase, Ptta/En/Spm, plant
+IPR021929	5.06426150187838e-05	Late blight resistance protein R1
+IPR003918	0.00705652132531428	NADH:ubiquinone oxidoreductase
+IPR029014	0.00015710346454611	[NiFe]-hydrogenase, large subunit
+IPR038290	0.00015710346454611	NADH-quinone oxidoreductase, subunit D superfamily
+IPR001135	8.57244057505102e-05	NADH-quinone oxidoreductase, subunit D
+IPR022997	0.00880688768728087	NADH-quinone oxidoreductase chain 4
+IPR008906	3.9617311897511e-05	HAT, C-terminal dimerisation domain
+IPR013955	2.96505104159675e-09	Replication factor A, C-terminal
+IPR003569	0.00155141416621781	Probable cytochrome c biosynthesis protein, plants
+IPR004332	6.32977469914385e-13	Transposase, MuDR, plant
+IPR029480	0.000353460646875219	Transposase-associated domain
+IPR040339	0.000353460646875219	Uncharacterized membrane protein At1g16860-like
+IPR026960	1.95460962573967e-18	Reverse transcriptase zinc-binding domain
+IPR034583	0.00227104562540973	Protein EMBRYONIC FLOWER 1
+IPR033251	0.000353460646875219	Protein NUCLEAR FUSION DEFECTIVE 6, chloroplastic/mitochondrial
+IPR009632	0.00855206743460364	NA
+IPR003871	9.63356836894754e-15	Domain of unknown function DUF223
+IPR013921	0.00855206743460364	Mediator complex, subunit Med20
+IPR031147	0.00705652132531428	Double-stranded RNA-binding protein
+IPR007216	0.00880688768728087	CCR4-NOT transcription complex subunit 9
