@@ -13,68 +13,83 @@
 
 ### Genome size estimation with Kmergenie
 
-   reads_files contains the name of PE reads from Illumina per line
+   reads_file contains the name of the files of PE sequences (trimmed) from Illumina (per line)
    
-    /LUSTRE/Genetica/ivan/bin_app/kmergenie-1.7048/kmergenie reads_file.txt #
+    /LUSTRE/Genetica/ivan/bin_app/kmergenie-1.7048/kmergenie reads_file.txt 
 
-Illumina reads are ready to use and now a little bit of work with PacBio sequences
-
-### Transform subreads in .bam format of PacBio Sequel to fastq
+   One this step is accomplished, now work on PacBio Sequences
+   
+### Transform PacBio subreads from .bam format to fastq or fasta, fasta files are much bigger in size
 
     bamtools convert -format fastq -in output_tic_pacbio_merged.bam -out tic23.subreads.fastq
 
-### Canu assembly
+### Firts, do a firts assembly using only the longreads, Canu program is the option. Canu detects the number of cores 
 
     canu -d ensamble_tic_pacbio -p datura_tic23 genomeSize=1.5g gridOptionscormhap="--mem=40g" merylMemory=62 batMemory=62 corMhapSensitivity=high correctedErrorRate=0.105 corOutCoverage=100 corMinCoverage=0 gridOptions="--time=168:00:00 --partition=FAST" gnuplotTested=true -pacbio-raw /home/icruz/data/secuencias_pacbio/bamfiles_tic_g/tic23.subreads.fastq 1>run2.log
 
-### Generate contigs only with the Illumina PE reads using SparseAssembler program
+### At the same time, generate contigs only with the Illumina PE sequences using the SparseAssembler program. This will generate an assembly only with Illumina sequences. Kmergenie program used in the step above gives the best kmer to produce an assembly. Use this one to feed SparseAssembler
 
     SparseAssembler LD 0 k 73 g 15 NodeCovTh 1 EdgeCovTh 0 GS 15000000 i1 /home/icruz/data/sec_illumina_tic23/output_Tic23_S155_L006_R1_001_paired.fastq i2 /home/icruz/data/illumina_tic23/output_Tic23_S155_L006_R2_001_paired.fastq
 
-### Hybrid assembly using raw reads from PacBio and contigs.txt file from SparseAssembler 
+### One both assemblies are done (Canu and SparseAssembler), now carried out an Hybrid assembly but using raw reads from PacBio and contigs.txt file from SparseAssembler. This program uses De bruin graph and overlap layout consensus algorithms
 
     DBG2OLC LD 1 k 17 AdaptiveTh 0.001 KmerCovTh 3 MinOverlap 10 RemoveChimera 1 Contigs /home/icruz/data/sec_illumina_tic23/Contigs.txt f /home/icruz/data/sec_illumina_tic23/tic23.subreads.fastq
   
  A file called scaffolds.fasta is generated, this is the hybrid assembly
 
-### Alignment between Canu (query) assembly and DBG2OLC (reference) assembly
+### In this step we want to align Canu assembly (Canu) to the Hybrid assembly (DBG2OLC)
 
-    /home/icruz/MUMmer3.23/nucmer --mumreference -l 100 self.fasta hybrid.fasta 
+    /home/icruz/MUMmer3.23/nucmer --mumreference -l 100 self.fasta hybrid.fasta
     
- self.fasta corresponds to the Canu assemblt file and hybrid.fasta corresponds to the hybrid assembly from DBG2OLC
+ self.fasta corresponds to the Canu assembly file and hybrid.fasta corresponds to the hybrid assembly from DBG2OLC
 
-### Quickmerge between both assemblies using the output out.delta from Nucmer
+### Once alignment from above step is done, now use Quickmerge, Ncmer gives you an out.delta file and use again the hybrid assembly and the Canu assembly
 
     quickmerge -d out.delta -q hybrid.fasta -r self.fasta -hco 3.0 -c 1.1 -l 70000 -ml 7000 -o genome_tic.fasta
    
-   A final merged assembly is obtained
+   A final merged assembly is obtained. This is the BackBone
 
 ## Polishing and scaffolding
 
 ### Bowtie2 was used to index the genome and we aligned the raw Illumina reads to the merged genome
-
+   
+   Firts, index the genome
     bowtie2-build --threads 30 genome_tic.fasta bt2_index_genomeTic
-
+   
+   Align the Illumina PED sequences to the BackBone
     bowtie2 -x bt2_index_genomeTic -1 ../../../../../../sec_illumina_tic23/output_Tic23_S155_L006_R1_001_paired.fastq -2 ../../../../../../sec_illumina_tic23/output_Tic23_S155_L006_R2_001_paired.fastq -S tic_gen.sam
-
+   
+   Convert the aligned file; sam to bam.
     samtools view -Sb tic_gen.sam > tic_gen.bam
-
+   
+   Index the aligned file and sort
     samtools index tic_gen.bam | sort > tic_gen.sorted.bam
-
+    
+### Now, its time to use Pilon for polishing the genome. Three rounds of polishing are recommended. Use the aligned file and Backbone to feed Pilon
+    
     java -jar pilon-1.22.jar --genome genome_tic.fasta —-b tic_gen.sorted.bam —-fix bases > genome_tic_pilon1.fasta
-
-    pbalign --minAnchorSize 15 --maxMatch 20 --nproc 15 output_tic_pacbio_merged.bam genome_tic_pilon1.fasta pbalign_tic.bam
-
+   
+   In this step, align the raw PacBio sequences to BackBone already polished with Pilon
+     
+     pbalign --minAnchorSize 15 --maxMatch 20 --nproc 15 output_tic_pacbio_merged.bam genome_tic_pilon1.fasta pbalign_tic.bam
+    
+    Now use arrow to obtain a consensus sequence and a polished genome
+    
     arrow pbalign_tic.bam -r genome_tic_pilon1.fasta -o consensus_tic_pilon1_arrow.fasta
+
+### All is ready for scaffolding, OPERA-LG uses the raw Illumina PE sequences, the genome and log reads
 
     /LUSTRE/Genetica/ivan/bin_app/OPERA-LG_v2.0.6/bin/OPERA-long-read.pl --short-read-maptool bowtie2 --opera /LUSTRE/Genetica/ivan/bin_app/OPERA-LG_v2.0.6/bin —num-of-processors 5 --kmer 17 --contig-file /LUSTRE/Genetica/ivan/pacbio_sequences/bamfiles_tic/pbalign/OPERA/consensus_tic_pilon1_arrow.fasta --illumina-read1 /LUSTRE/Genetica/ivan/pacbio_sequences/bamfiles_tic/pbalign/OPERA/reads_1.fasta --illumina-read2 /LUSTRE/Genetica/ivan/pacbio_sequences/bamfiles_tic/pbalign/OPERA/reads_2.fasta --long-read-file /LUSTRE/Genetica/ivan/pacbio_sequences/bamfiles_tic/pbalign/OPERA/raw_reads_pacbio_tic.fasta --output-prefix opera_lr --output-directory RESULTS
 
-### A second polishing step with PILON but now to the last version of the genome
+### A second polishing step with PILON but now to the last version of the genome (output from OPERA-LG)
 
-### Nuclear genome validation
-
+### See results and for nuclear genome validation
+   Quast gives you summary statistics
+   
     quast.py genome.polished.draft.fasta
-
+   
+   BUSCO looks in a specifica database set by the user the number of Single copy Orthologs ans gives you the percentage of genome completness
+   
     python run_BUSCO.py -r -i /home/icruz/data/ensamble_hibrido_teo1/merge/maker/final_genome_teotihuacan.fasta -o busco_finaldraft_genome_teotihuacan -l /home/icruz/data/sec_illumina_tic23/merge/quickmerge2/quickmerge3/quickmerge4/finish/MARKER/busco/solanaceae_odb10 -m geno
 
 ### Also a last alignment of the raw Illumina reads to the last version of the genome was carried out to obtain the alignment rates
