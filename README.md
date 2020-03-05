@@ -80,7 +80,7 @@
     
     arrow pbalign_tic.bam -r genome_tic_pilon1.fasta -o consensus_tic_pilon1_arrow.fasta
 
-### All is ready for scaffolding, OPERA-LG uses the raw Illumina PE sequences, the genome and log reads
+### All is ready for scaffolding, OPERA-LG uses the raw Illumina PE sequences, the genome and long reads
 
     /LUSTRE/Genetica/ivan/bin_app/OPERA-LG_v2.0.6/bin/OPERA-long-read.pl --short-read-maptool bowtie2 --opera /LUSTRE/Genetica/ivan/bin_app/OPERA-LG_v2.0.6/bin —num-of-processors 5 --kmer 17 --contig-file /LUSTRE/Genetica/ivan/pacbio_sequences/bamfiles_tic/pbalign/OPERA/consensus_tic_pilon1_arrow.fasta --illumina-read1 /LUSTRE/Genetica/ivan/pacbio_sequences/bamfiles_tic/pbalign/OPERA/reads_1.fasta --illumina-read2 /LUSTRE/Genetica/ivan/pacbio_sequences/bamfiles_tic/pbalign/OPERA/reads_2.fasta --long-read-file /LUSTRE/Genetica/ivan/pacbio_sequences/bamfiles_tic/pbalign/OPERA/raw_reads_pacbio_tic.fasta --output-prefix opera_lr --output-directory RESULTS
 
