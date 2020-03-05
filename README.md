@@ -60,9 +60,11 @@
     bowtie2 -x bt2_index_genomeTic -1 ../../../../../../sec_illumina_tic23/output_Tic23_S155_L006_R1_001_paired.fastq -2 ../../../../../../sec_illumina_tic23/output_Tic23_S155_L006_R2_001_paired.fastq -S tic_gen.sam
    
    Convert the aligned file; sam to bam.
+    
     samtools view -Sb tic_gen.sam > tic_gen.bam
    
    Index the aligned file and sort
+   
     samtools index tic_gen.bam | sort > tic_gen.sorted.bam
     
 ### Now, its time to use Pilon for polishing the genome. Three rounds of polishing are recommended. Use the aligned file and Backbone to feed Pilon
@@ -71,7 +73,7 @@
    
    In this step, align the raw PacBio sequences to BackBone already polished with Pilon
      
-     pbalign --minAnchorSize 15 --maxMatch 20 --nproc 15 output_tic_pacbio_merged.bam genome_tic_pilon1.fasta pbalign_tic.bam
+    pbalign --minAnchorSize 15 --maxMatch 20 --nproc 15 output_tic_pacbio_merged.bam genome_tic_pilon1.fasta pbalign_tic.bam
     
     Now use arrow to obtain a consensus sequence and a polished genome
     
