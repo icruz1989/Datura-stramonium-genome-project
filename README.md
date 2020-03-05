@@ -5,7 +5,7 @@
 
 ### Firts step is trimming poor quality sequences
 
-    java -jar ~/Trimmomatic-0.33/trimmomatic-0.33.jar PE -phred30 Tic23_S155_L006_R1_001.fastq Tic23_S155_L006_R2_001.fastq output_Tic23_S155_L006_R1_001_paired.fastq output_Tic23_S155_L006_R1_001_unpaired.fastq output_Tic23_S155_L006_R2_001_paired.fastq output_Tic23_S156_L006_R2_001_unpaired.fastq SLIDINGWINDOW:4:15 MINLEN:36
+    java -jar trimmomatic-0.33.jar PE -phred30 Tic23_S155_L006_R1_001.fastq Tic23_S155_L006_R2_001.fastq output_Tic23_S155_L006_R1_001_paired.fastq output_Tic23_S155_L006_R1_001_unpaired.fastq output_Tic23_S155_L006_R2_001_paired.fastq output_Tic23_S156_L006_R2_001_unpaired.fastq SLIDINGWINDOW:4:15 MINLEN:36
 
 ### Fastqc program was used to visualize the quality of the sequences
 
@@ -15,7 +15,7 @@
 
    reads_file contains the name of the files of PE sequences (trimmed) from Illumina (per line)
    
-    /LUSTRE/Genetica/ivan/bin_app/kmergenie-1.7048/kmergenie reads_file.txt 
+    kmergenie-1.7048/kmergenie reads_file.txt 
 
    One this step is accomplished, now work on PacBio Sequences
    
@@ -25,21 +25,21 @@
 
 ### Firts, we produced an assembly using only the longreads, Canu program is the option. Canu detects the number of cores 
 
-    canu -d ensamble_tic_pacbio -p datura_tic23 genomeSize=1.5g gridOptionscormhap="--mem=40g" merylMemory=62 batMemory=62 corMhapSensitivity=high correctedErrorRate=0.105 corOutCoverage=100 corMinCoverage=0 gridOptions="--time=168:00:00 --partition=FAST" gnuplotTested=true -pacbio-raw /home/icruz/data/secuencias_pacbio/bamfiles_tic_g/tic23.subreads.fastq 1>run2.log
+    canu -d ensamble_tic_pacbio -p datura_tic23 genomeSize=1.5g gridOptionscormhap="--mem=40g" merylMemory=62 batMemory=62 corMhapSensitivity=high correctedErrorRate=0.105 corOutCoverage=100 corMinCoverage=0 gridOptions="--time=168:00:00 --partition=FAST" gnuplotTested=true -pacbio-raw tic23.subreads.fastq 1>run2.log
 
 ### At the same time, generate contigs only with the Illumina PE sequences using the SparseAssembler program. This will generate an assembly only with Illumina sequences. Kmergenie program used in the step above gives the best kmer to produce an assembly. Use this one to feed SparseAssembler
 
-    SparseAssembler LD 0 k 73 g 15 NodeCovTh 1 EdgeCovTh 0 GS 15000000 i1 /home/icruz/data/sec_illumina_tic23/output_Tic23_S155_L006_R1_001_paired.fastq i2 /home/icruz/data/illumina_tic23/output_Tic23_S155_L006_R2_001_paired.fastq
+    SparseAssembler LD 0 k 73 g 15 NodeCovTh 1 EdgeCovTh 0 GS 15000000 i1 output_Tic23_S155_L006_R1_001_paired.fastq i2 output_Tic23_S155_L006_R2_001_paired.fastq
 
 ### One both assemblies are done (Canu and SparseAssembler), now carried out an Hybrid assembly but using raw reads from PacBio and contigs.txt file from SparseAssembler. This program uses De bruin graph and overlap layout consensus algorithms
 
-    DBG2OLC LD 1 k 17 AdaptiveTh 0.001 KmerCovTh 3 MinOverlap 10 RemoveChimera 1 Contigs /home/icruz/data/sec_illumina_tic23/Contigs.txt f /home/icruz/data/sec_illumina_tic23/tic23.subreads.fastq
+    DBG2OLC LD 1 k 17 AdaptiveTh 0.001 KmerCovTh 3 MinOverlap 10 RemoveChimera 1 Contigs Contigs.txt f tic23.subreads.fastq
   
  A file called scaffolds.fasta is generated, this is the hybrid assembly
 
 ### In this step we want to align Canu assembly (Canu) to the Hybrid assembly (DBG2OLC)
 
-    /home/icruz/MUMmer3.23/nucmer --mumreference -l 100 self.fasta hybrid.fasta
+    nucmer --mumreference -l 100 self.fasta hybrid.fasta
     
  self.fasta corresponds to the Canu assembly file and hybrid.fasta corresponds to the hybrid assembly from DBG2OLC
 
@@ -58,7 +58,7 @@
     bowtie2-build --threads 30 genome_tic.fasta bt2_index_genomeTic
    
     Align the Illumina PED sequences to the BackBone
-    bowtie2 -x bt2_index_genomeTic -1 ../../../../../../sec_illumina_tic23/output_Tic23_S155_L006_R1_001_paired.fastq -2 ../../../../../../sec_illumina_tic23/output_Tic23_S155_L006_R2_001_paired.fastq -S tic_gen.sam
+    bowtie2 -x bt2_index_genomeTic -1 output_Tic23_S155_L006_R1_001_paired.fastq -2 output_Tic23_S155_L006_R2_001_paired.fastq -S tic_gen.sam
    
    Convert the aligned file; sam to bam.
     
@@ -82,7 +82,7 @@
 
 ### All is ready for scaffolding, OPERA-LG uses the raw Illumina PE sequences, the genome and long reads
 
-    /LUSTRE/Genetica/ivan/bin_app/OPERA-LG_v2.0.6/bin/OPERA-long-read.pl --short-read-maptool bowtie2 --opera /LUSTRE/Genetica/ivan/bin_app/OPERA-LG_v2.0.6/bin —num-of-processors 5 --kmer 17 --contig-file /LUSTRE/Genetica/ivan/pacbio_sequences/bamfiles_tic/pbalign/OPERA/consensus_tic_pilon1_arrow.fasta --illumina-read1 /LUSTRE/Genetica/ivan/pacbio_sequences/bamfiles_tic/pbalign/OPERA/reads_1.fasta --illumina-read2 /LUSTRE/Genetica/ivan/pacbio_sequences/bamfiles_tic/pbalign/OPERA/reads_2.fasta --long-read-file /LUSTRE/Genetica/ivan/pacbio_sequences/bamfiles_tic/pbalign/OPERA/raw_reads_pacbio_tic.fasta --output-prefix opera_lr --output-directory RESULTS
+    perl OPERA-long-read.pl --short-read-maptool bowtie2 --opera /LUSTRE/Genetica/ivan/bin_app/OPERA-LG_v2.0.6/bin —num-of-processors 5 --kmer 17 --contig-file consensus_tic_pilon1_arrow.fasta --illumina-read1 reads_1.fasta --illumina-read2 reads_2.fasta --long-read-file raw_reads_pacbio_tic.fasta --output-prefix opera_lr --output-directory RESULTS
 
 ### A second polishing step with PILON but now to the last version of the genome (output from OPERA-LG)
 
@@ -93,7 +93,7 @@
    
    BUSCO looks in a specifica database set by the user the number of Single copy Orthologs ans gives you the percentage of genome completness
    
-    python run_BUSCO.py -r -i /home/icruz/data/ensamble_hibrido_teo1/merge/maker/final_genome_teotihuacan.fasta -o busco_finaldraft_genome_teotihuacan -l /home/icruz/data/sec_illumina_tic23/merge/quickmerge2/quickmerge3/quickmerge4/finish/MARKER/busco/solanaceae_odb10 -m geno
+    python run_BUSCO.py -r -i final_genome_teotihuacan.fasta -o busco_finaldraft_genome_teotihuacan -l solanaceae_odb10 -m geno
 
 ### Also a last alignment of the raw Illumina reads to the last version of the genome was carried out to obtain the alignment rates
 
