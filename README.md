@@ -23,7 +23,7 @@
 
     bamtools convert -format fastq -in output_tic_pacbio_merged.bam -out tic23.subreads.fastq
 
-### Firts, do a firts assembly using only the longreads, Canu program is the option. Canu detects the number of cores 
+### Firts, we produced an assembly using only the longreads, Canu program is the option. Canu detects the number of cores 
 
     canu -d ensamble_tic_pacbio -p datura_tic23 genomeSize=1.5g gridOptionscormhap="--mem=40g" merylMemory=62 batMemory=62 corMhapSensitivity=high correctedErrorRate=0.105 corOutCoverage=100 corMinCoverage=0 gridOptions="--time=168:00:00 --partition=FAST" gnuplotTested=true -pacbio-raw /home/icruz/data/secuencias_pacbio/bamfiles_tic_g/tic23.subreads.fastq 1>run2.log
 
@@ -56,7 +56,7 @@
    Firts, index the genome
     bowtie2-build --threads 30 genome_tic.fasta bt2_index_genomeTic
    
-   Align the Illumina PED sequences to the BackBone
+    Align the Illumina PED sequences to the BackBone
     bowtie2 -x bt2_index_genomeTic -1 ../../../../../../sec_illumina_tic23/output_Tic23_S155_L006_R1_001_paired.fastq -2 ../../../../../../sec_illumina_tic23/output_Tic23_S155_L006_R2_001_paired.fastq -S tic_gen.sam
    
    Convert the aligned file; sam to bam.
