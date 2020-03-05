@@ -54,6 +54,7 @@
 ### Bowtie2 was used to index the genome and we aligned the raw Illumina reads to the merged genome
    
    Firts, index the genome
+   
     bowtie2-build --threads 30 genome_tic.fasta bt2_index_genomeTic
    
     Align the Illumina PED sequences to the BackBone
@@ -75,7 +76,7 @@
      
     pbalign --minAnchorSize 15 --maxMatch 20 --nproc 15 output_tic_pacbio_merged.bam genome_tic_pilon1.fasta pbalign_tic.bam
     
-    Now use arrow to obtain a consensus sequence and a polished genome
+   Now use arrow to obtain a consensus sequence and a polished genome
     
     arrow pbalign_tic.bam -r genome_tic_pilon1.fasta -o consensus_tic_pilon1_arrow.fasta
 
