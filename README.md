@@ -31,7 +31,7 @@
 
     SparseAssembler LD 0 k 73 g 15 NodeCovTh 1 EdgeCovTh 0 GS 15000000 i1 output_Tic23_S155_L006_R1_001_paired.fastq i2 output_Tic23_S155_L006_R2_001_paired.fastq
 
-### One both assemblies are done (Canu and SparseAssembler), now carried out an Hybrid assembly but using raw reads from PacBio and contigs.txt file from SparseAssembler. This program uses De bruin graph and overlap layout consensus algorithms
+### Once both assemblies are done (Canu and SparseAssembler), now do an Hybrid assembly but using raw reads from PacBio and contigs.txt file from SparseAssembler. This program uses De bruin graph and overlap layout consensus algorithms
 
     DBG2OLC LD 1 k 17 AdaptiveTh 0.001 KmerCovTh 3 MinOverlap 10 RemoveChimera 1 Contigs Contigs.txt f tic23.subreads.fastq
   
