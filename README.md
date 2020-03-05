@@ -57,7 +57,8 @@
    
     bowtie2-build --threads 30 genome_tic.fasta bt2_index_genomeTic
    
-    Align the Illumina PED sequences to the BackBone
+   Align the Illumina PED sequences to the BackBone
+    
     bowtie2 -x bt2_index_genomeTic -1 output_Tic23_S155_L006_R1_001_paired.fastq -2 output_Tic23_S155_L006_R2_001_paired.fastq -S tic_gen.sam
    
    Convert the aligned file; sam to bam.
