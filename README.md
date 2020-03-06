@@ -93,7 +93,7 @@
    
     quast.py genome.polished.draft.fasta
    
-   BUSCO looks in a specifica database set by the user the number of Single copy Orthologs ans gives you the percentage of genome completness
+   BUSCO looks in a specific database set by the user the number of Single copy Orthologs ans gives you the percentage of genome completness
    
     python run_BUSCO.py -r -i final_genome_teotihuacan.fasta -o busco_finaldraft_genome_teotihuacan -l solanaceae_odb10 -m geno
 
@@ -162,8 +162,7 @@ see http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Const
 
 ### Firts we obtained and trained gene models using Augustus inside BUSCO program. See BUSCO documentation for more information. Sugustus produces gene models and this models will be used in MAKER
 
-    python run_BUSCO.py -r -i final_genome_tic23.fasta -o busco_finaldraft_genome_teotihuacan -l sonaceae_odb10 -m geno -         long      
-
+    python run_BUSCO.py -r -i final_genome_tic23.fasta -o busco_finaldraft_genome_teotihuacan -l sonaceae_odb10 -m geno -long      
 ### MAKER was run following this pipeline 
 
 http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/MAKER_Tutorial_for_WGS_Assembly_and_Annotation_Winter_School_2018
