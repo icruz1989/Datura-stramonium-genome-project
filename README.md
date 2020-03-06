@@ -40,6 +40,11 @@
 ### In this step we want to align Canu assembly (Canu) to the Hybrid assembly (DBG2OLC)
 
     nucmer --mumreference -l 100 self.fasta hybrid.fasta
+   
+   This script from same Nucmer allow to filter out alignments due to repeats and duplicates
+    
+    delta-filter -r -q -l 10000 out.delta > out.rq.delta
+
     
  self.fasta corresponds to the Canu assembly file and hybrid.fasta corresponds to the hybrid assembly from DBG2OLC
 
