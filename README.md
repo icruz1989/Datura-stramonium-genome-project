@@ -172,11 +172,11 @@ http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/MAKER_Tutorial_for_WGS_A
    
    MAKER uses several other programs that run inside MAKER and also uses three main configuration files
    
-   maker_exe.ctl - contains the path information for the underlying executables    
+   - maker_exe.ctl - contains the path information for the underlying executables    
    
-   maker_bopt.ctl - contains filtering statistics for BLAST and Exonerate
+   - maker_bopt.ctl - contains filtering statistics for BLAST and Exonerate
    
-   maker_opt.ctl - contains all other information for MAKER, including the location of the input genome filem input proteins      and transcripts and gene models
+   - maker_opt.ctl - contains all other information for MAKER, including the location of the input genome filem input proteins      and transcripts and gene models
 
 ### Once these configuration files are filled, running MAKER is pretty easy. From the folder where you have stored the configuration files just type
 
@@ -184,13 +184,13 @@ http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/MAKER_Tutorial_for_WGS_A
 
 The outputs from MAKER are:
 
-   The maker_opts.log, maker_exe.log, and maker_bopts.log files are logs of the control files used for this run of MAKER
+   - The maker_opts.log, maker_exe.log, and maker_bopts.log files are logs of the control files used for this run of MAKER
    
-   The mpi_blastdb directory contains FASTA indexes and BLAST database files created from the input EST, protein, and repeat      databases
+   - The mpi_blastdb directory contains FASTA indexes and BLAST database files created from the input EST, protein, and repeat      databases
    
-   The dpp_contig_master_datastore_index.log contains information on both the run status of individual contigs and information    on where individual contig data is stored
+   - The dpp_contig_master_datastore_index.log contains information on both the run status of individual contigs and information    on where individual contig data is stored
    
-   The dpp_contig_datastore directory contains a set of subfolders, each containing the final MAKER output for individual        contigs from the genomic fasta file
+   - The dpp_contig_datastore directory contains a set of subfolders, each containing the final MAKER output for individual        contigs from the genomic fasta file
 
 MAKER was run four times, each time was changed the gene models predicted from the prior run 
       
