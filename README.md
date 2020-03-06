@@ -221,7 +221,7 @@ scripts are part of https://github.com/NBISweden/GAAS
 
 ### InterproScan command to annotate domains of proteins 
 
-    interproscan.sh -appl TIGRFAM,SUPERFAMILY,Coils,ProSiteProfiles,SMART,PRINTS,ProSitePatterns,Pfam,ProDom -dp -f TSV -goterms -iprlookup -pa -t p -i Capsicum_annuum_cvCM334.fasta Capsicum_annuum_cvCM334.iprscan >& run1.out
+    interproscan.sh -appl TIGRFAM,SUPERFAMILY,Coils,ProSiteProfiles,SMART,PRINTS,ProSitePatterns,Pfam,ProDom -dp -f TSV -goterms -iprlookup -pa -t p -i Datura_genomeTic.fasta Datura_genomeTic.iprscan >& run1.out
 
 # Comparative analyses
 
@@ -261,7 +261,7 @@ https://github.com/asishallab/SlydGeneFamsAnalyses/blob/icruz/exec/readAndParseO
 
     for d in *; do
     if [ -d "$d" ]; then         # or:  if test -d "$d"; then
-    ( cd "$d" && java -jar /home/icruz/data/MAPPrun/MAPPprogram/MAPP.jar -f ${d}_edited_AA_MSA.fa -t ${d}_phyl_tree.newick -o ${d}_mapp.out )
+    ( cd "$d" && java -jar MAPP.jar -f ${d}_edited_AA_MSA.fa -t ${d}_phyl_tree.newick -o ${d}_mapp.out )
     fi;
     done
 
@@ -289,20 +289,20 @@ https://github.com/asishallab/SlydGeneFamsAnalyses/blob/icruz/exec/readAndParseO
 
 ### Running PAL2NAL to generate a CDS alignment for all folders
 
-    for d in *; do if [ -d "$d" ]; then ( cd "$d" && perl /home/icruz/apps/pal2nal.v14/pal2nal.pl *_AA_MSA_orig_gene_ids.fa *_CDS.fa -codontable 1 -output fasta > ${d}_pal2nal_CDS.fa ); fi; done
+    for d in *; do if [ -d "$d" ]; then ( cd "$d" && perl pal2nal.pl *_AA_MSA_orig_gene_ids.fa *_CDS.fa -codontable 1 -output fasta > ${d}_pal2nal_CDS.fa ); fi; done
 
 ### Running FUBAR for all folders 
 
-    for d in *; do if [ -d "$d" ]; then ( cd "$d" && hyphy fubar --alignment ${d}_pal2nal_CDS.fa --tree ${d}_phyl_tree_orig_gene_ids.newick ); fi; done &> running_FUBAR.txt &
+    for d in *; do if [ -d "$d" ]; then ( cd "$d" && hyphy fubar --alignment ${d}_pal2nal_CDS.fa --tree ${d}_phyl_tree_orig_gene_ids.newick ); fi; done &> running_FUBAR.txt
 
 ### Parsing FUBAR outputs
 
-    myext = phyphy.Extractor("/home/icruz/data/PRUEBA_MEME_fams/PRUEBA_MEME_withnewpipeline/working_dir/MEME_22001_23000/OG0022001/OG0022001_pal2nal_CDS.fa.MEME.json")
+    myext = phyphy.Extractor("OG0022001_pal2nal_CDS.fa.MEME.json")
     myext.extract_csv("fest.tsv", delim = "\t")
 
 ### Parsing .json format for all directories
 
-    for d in *; do if [ -d "$d" ]; then ( cd "$d" && python /LUSTRE/Genetica/ivan/prueba_parsing_fubar/parsejason_v2.py -f *_pal2nal_CDS.fa.FUBAR.json ); fi; done &> running_parseJSON.txt &
+    for d in *; do if [ -d "$d" ]; then ( cd "$d" && python parsejason_v2.py -f *_pal2nal_CDS.fa.FUBAR.json ); fi; done &> running_parseJSON.txt
 
 ### Now you will have a txt file in each directory or folder with the sites under positive selection, the next step is to parse that file to just keep the sites with a byes factor > 100, significant posterior probabilities ≥ 0.98. Use this script for the purpose. 
 
