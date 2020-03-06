@@ -59,7 +59,7 @@
    
    Align the Illumina PED sequences to the BackBone
     
-    bowtie2 -x bt2_index_genomeTic -1 output_Tic23_S155_L006_R1_001_paired.fastq -2 output_Tic23_S155_L006_R2_001_paired.fastq -S tic_gen.sam
+    bowtie2 -x bt2_index_genomeTic -1 output_Tic23_S155_L006_R1_001_paired.fastq -2 output_Tic23_S155_L006_R2_001_paired.fastq     -S tic_gen.sam
    
    Convert the aligned file; sam to bam.
     
@@ -158,7 +158,7 @@ see http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Const
    
 # Gene annotation 
 
-### Firt we trained the gene models with Ausgustus program
+### Firts we obtained and trained  gene models using Augustus inside BUSCO program. See BUSCO documentation for more information
 
     python run_BUSCO.py -r -i final_genome_tic23.fasta -o busco_finaldraft_genome_teotihuacan -l sonaceae_odb10 -m geno -         long      
 
