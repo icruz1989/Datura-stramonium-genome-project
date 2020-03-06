@@ -1,6 +1,6 @@
 # *Datura stramonium* genome project (the devil weed)
 
-* This is the workflow that was followed to assembly and annotate the genome of *Datura stramonium* and for comparative genomics with 13 Solanaceae species. Many programs have been used and links of some of them have been stored here. Also, other pipelines have been followed and a link of each one will be found in this workflow.
+* This is the workflow that was followed to assembly and annotate the genome of *Datura stramonium* and for comparative genomics with 13 Solanaceae species. Many programs have been used and links of some of them have been stored here. Also, other pipelines have been followed and a link of each one will be found in this workflow. 
 
 
 ### Firts step is trimming poor quality sequences
