@@ -158,7 +158,7 @@ see http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Const
    
 # Gene annotation 
 
-### Firts we obtained and trained  gene models using Augustus inside BUSCO program. See BUSCO documentation for more information
+### Firts we obtained and trained gene models using Augustus inside BUSCO program. See BUSCO documentation for more information. Sugustus produces gene models and this models will be used in MAKER
 
     python run_BUSCO.py -r -i final_genome_tic23.fasta -o busco_finaldraft_genome_teotihuacan -l sonaceae_odb10 -m geno -         long      
 
@@ -167,10 +167,27 @@ see http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Const
 http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/MAKER_Tutorial_for_WGS_Assembly_and_Annotation_Winter_School_2018
 
 ### Running MAKER 
+   
+   MAKER uses several other programs that run inside MAKER and also uses three main configuration files
+   
+   maker_exe.ctl - contains the path information for the underlying executables.    
+   maker_bopt.ctl - contains filtering statistics for BLAST and Exonerate
+   maker_opt.ctl - contains all other information for MAKER, including the location of the input genome filem input proteins      and transcripts and gene models.
+
+### Once these configuration files are filled, running MAKER is pretty easy. From the folder where you have stored the configuration files just type
 
     maker -base maker_gff_final -g draffinal_genome_ticuman.fasta -fix_nucleotides
 
-### AED quality filtering was done using the script from MAKER: quality_filter.pl 
+The outputs from MAKER are:
+
+   The maker_opts.log, maker_exe.log, and maker_bopts.log files are logs of the control files used for this run of MAKER.
+   The mpi_blastdb directory contains FASTA indexes and BLAST database files created from the input EST, protein, and repeat      databases.
+   The dpp_contig_master_datastore_index.log contains information on both the run status of individual contigs and information    on where individual contig data is stored.
+   The dpp_contig_datastore directory contains a set of subfolders, each containing the final MAKER output for individual        contigs from the genomic fasta file.
+
+MAKER was run four times, each time was changed the gene models predicted from the prior run
+
+### To AED quality filtering was done using the script from MAKER: quality_filter.pl 
 
 available here: https://groups.google.com/forum/#!searchin/maker-devel/quality_filter.pl%7Csort:relevance/maker-devel/LC4STWWlwgo/XV4nhGiHsfIJ
 
