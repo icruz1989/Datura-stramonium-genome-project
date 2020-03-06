@@ -198,11 +198,19 @@ The outputs from MAKER are:
 
 MAKER was run four times, each time was changed the gene models predicted from the prior run 
       
-    Now, to obtain the proteins, transcript and a gff file with coordinates of these just use this script and the path of the directory created by MARKER
+   Now, to obtain the proteins, transcript and a gff file with coordinates of these just use this script and the path of the directory created by MARKER
      
     fasta_merge -d dpp_contig_master_datastore_index.log
 
     gff3_merge -d dpp_contig_master_datastore_index.log
+    
+ ### Alternative, these scripts are very useful to obtain proteins and CDS from gff3 format files 
+
+   scripts are part of https://github.com/NBISweden/GAAS
+
+    gff3_sp_extract_sequences.pl -gff Final_just_genemodels_tic23_AED_0.5 -f draffinal_genome_ticuman.fasta -p -o       mkr_snap3_final.all.maker.proteins_extractions.fasta 
+
+    gff3_sp_extract_sequences.pl -t cds --cfs -g s.pimp.mgm.FINAL.gff -f tomato-scaffolds.abyss.77.fasta -o cds_solpi.fasta &
 
 ### AED quality filtering was done using the script from MAKER: quality_filter.pl 
 
@@ -215,14 +223,6 @@ A comprenhensive tutorial for funtional annotations is found in below links
 Link for MAKER pipeline: http://weatherby.genetics.utah.edu/MAKER/wiki/index.php MAKER_Tutorial_for_WGS_Assembly_and_Annotation_Winter_School_2018 
 
 Link for AHRD program: https://github.com/asishallab/AHRD https://github.com/asishallab/AHRD
-
-### Alternative, these scripts are very useful to obtain proteins and CDS from gff3 format files 
-
-scripts are part of https://github.com/NBISweden/GAAS
-
-    gff3_sp_extract_sequences.pl -gff Final_just_genemodels_tic23_AED_0.5 -f draffinal_genome_ticuman.fasta -p -o mkr_snap3_final.all.maker.proteins_extractions.fasta 
-
-    gff3_sp_extract_sequences.pl -t cds --cfs -g s.pimp.mgm.FINAL.gff -f tomato-scaffolds.abyss.77.fasta -o cds_solpi.fasta &
 
 ### InterproScan command to annotate domains of proteins 
 
