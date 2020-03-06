@@ -203,25 +203,25 @@ MAKER was run four times, each time was changed the gene models predicted from t
 
 available here: https://groups.google.com/forum/#!searchin/maker-devel/quality_filter.pl%7Csort:relevance/maker-devel/LC4STWWlwgo/XV4nhGiHsfIJ
 
-### Functional annotation was done using the MAKER and names of the genes were edited using the program AHRD, alternative annotation was done using Mercartor with the database MapMan4
+### Functional annotation was done using the MAKER proteins and transcripts. Names of the genes were edited using the program AHRD, alternative annotation was done using Mercartor with the database MapMan4
+
+A comprenhensive tutorial for funtional annotations is found in below links
 
 Link for MAKER pipeline: http://weatherby.genetics.utah.edu/MAKER/wiki/index.php MAKER_Tutorial_for_WGS_Assembly_and_Annotation_Winter_School_2018 
 
 Link for AHRD program: https://github.com/asishallab/AHRD https://github.com/asishallab/AHRD
 
-### This script is very useful to obtain proteins from gff3 format files 
+### Alternative, these scripts are very useful to obtain proteins and CDS from gff3 format files 
 
-script is part of https://github.com/NBISweden/GAAS
+scripts are part of https://github.com/NBISweden/GAAS
 
-    gff3_sp_extract_sequences.pl -gff Final_just_genemodels_tic23_AED_0.5 -f draffinal_genome_ticuman.fasta -p -o mkr_snap3_final.all.maker.proteins_extractions.fasta &
-
-### This is for retrieve CDS (also part of GAAS)
+    gff3_sp_extract_sequences.pl -gff Final_just_genemodels_tic23_AED_0.5 -f draffinal_genome_ticuman.fasta -p -o mkr_snap3_final.all.maker.proteins_extractions.fasta 
 
     gff3_sp_extract_sequences.pl -t cds --cfs -g s.pimp.mgm.FINAL.gff -f tomato-scaffolds.abyss.77.fasta -o cds_solpi.fasta &
 
 ### InterproScan command to annotate domains of proteins 
 
-    interproscan.sh -appl TIGRFAM,SUPERFAMILY,Coils,ProSiteProfiles,SMART,PRINTS,ProSitePatterns,Pfam,ProDom -dp -f TSV -goterms -iprlookup -pa -t p -i Capsicum_annuum_cvCM334.fasta Capsicum_annuum_cvCM334.iprscan >& run1.out &
+    interproscan.sh -appl TIGRFAM,SUPERFAMILY,Coils,ProSiteProfiles,SMART,PRINTS,ProSitePatterns,Pfam,ProDom -dp -f TSV -goterms -iprlookup -pa -t p -i Capsicum_annuum_cvCM334.fasta Capsicum_annuum_cvCM334.iprscan >& run1.out
 
 # Comparative analyses
 
