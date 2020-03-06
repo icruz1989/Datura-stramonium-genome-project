@@ -99,6 +99,8 @@
 
 # Repetitive elements analysis
 
+Some script used in this section are already stored in RepeatModeler or RepeatMasker programs. See manual of these to more information
+
 see http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Construction--Basic
 
 ### The firts step for repetitive elements identification is build a databse
@@ -131,7 +133,7 @@ see http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Const
    Rename/combine files from RepeatModeler using following commands:
    
     mv  unknown_elements.txt  ModelerUnknown.lib
-    cat  identified_elements.txt  repeatmodeler_identities.fasta  > ModelerID.lib
+    cat identified_elements.txt  repeatmodeler_identities.fasta  > ModelerID.lib
    
 #### All repeats collected so far are used to search against a plant protein database where proteins from transposons are excluded. Elements with significant hits to genes are removed, along with 50 bp upstream and downstream of the blast hit. Remaining sequence that is less than 50 bp is removed completely. Outputs from this script are elements with no significant blast hits to the protein database and the remaining sequence from elements with blast hits that is greater than 50 bp. Use ProExcluder prograam for this purpose
    
@@ -170,9 +172,9 @@ http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/MAKER_Tutorial_for_WGS_A
    
    MAKER uses several other programs that run inside MAKER and also uses three main configuration files
    
-   maker_exe.ctl - contains the path information for the underlying executables.    
+   maker_exe.ctl - contains the path information for the underlying executables    
    maker_bopt.ctl - contains filtering statistics for BLAST and Exonerate
-   maker_opt.ctl - contains all other information for MAKER, including the location of the input genome filem input proteins      and transcripts and gene models.
+   maker_opt.ctl - contains all other information for MAKER, including the location of the input genome filem input proteins      and transcripts and gene models
 
 ### Once these configuration files are filled, running MAKER is pretty easy. From the folder where you have stored the configuration files just type
 
@@ -180,12 +182,21 @@ http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/MAKER_Tutorial_for_WGS_A
 
 The outputs from MAKER are:
 
-   The maker_opts.log, maker_exe.log, and maker_bopts.log files are logs of the control files used for this run of MAKER.
-   The mpi_blastdb directory contains FASTA indexes and BLAST database files created from the input EST, protein, and repeat      databases.
-   The dpp_contig_master_datastore_index.log contains information on both the run status of individual contigs and information    on where individual contig data is stored.
-   The dpp_contig_datastore directory contains a set of subfolders, each containing the final MAKER output for individual        contigs from the genomic fasta file.
+   The maker_opts.log, maker_exe.log, and maker_bopts.log files are logs of the control files used for this run of MAKER
+   
+   The mpi_blastdb directory contains FASTA indexes and BLAST database files created from the input EST, protein, and repeat      databases
+   
+   The dpp_contig_master_datastore_index.log contains information on both the run status of individual contigs and information    on where individual contig data is stored
+   
+   The dpp_contig_datastore directory contains a set of subfolders, each containing the final MAKER output for individual        contigs from the genomic fasta file
 
-MAKER was run four times, each time was changed the gene models predicted from the prior run
+MAKER was run four times, each time was changed the gene models predicted from the prior run 
+      
+    Now, to obtain the proteins, transcript and a gff file with coordinates of these just use this script and the path of the directory created by MARKER
+     
+    fasta_merge -d dpp_contig_master_datastore_index.log
+
+    gff3_merge -d dpp_contig_master_datastore_index.log
 
 ### To AED quality filtering was done using the script from MAKER: quality_filter.pl 
 
