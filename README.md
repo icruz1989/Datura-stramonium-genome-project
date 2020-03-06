@@ -121,8 +121,6 @@ see http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Const
     blastx -query repeatmodeler_unknowns.fasta -db Tpases020812  -evalue 1e-10 -num_descriptions 10 -out                           modelerunknown_blast_results.txt
     
     transposon_blast_parse.pl --blastx <blastx output file> --modelerunknown <full path of the modeler unknown file>
-
-    RepeatMasker -pa 20 -q -lib taxon.repeatlib.fa -gff pilon.fasta
     
    Outputs:
 
@@ -134,16 +132,35 @@ see http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Const
    
     mv  unknown_elements.txt  ModelerUnknown.lib
     cat  identified_elements.txt  repeatmodeler_identities.fasta  > ModelerID.lib
-
-### plotting repeat landscape
-
-    calcDivergenceFromAlign.pl -s tic23.divsum -a teo1.align final_genome_teotihuacan.fasta.cat.gz
-
-    createRepeatLandscape.pl -g 1471881354 -div tic23.divsum > tic23_repeats.html
-
+   
+#### All repeats collected so far are used to search against a plant protein database where proteins from transposons are excluded. Elements with significant hits to genes are removed, along with 50 bp upstream and downstream of the blast hit. Remaining sequence that is less than 50 bp is removed completely. Outputs from this script are elements with no significant blast hits to the protein database and the remaining sequence from elements with blast hits that is greater than 50 bp. Use ProExcluder prograam for this purpose
+   
+   Database alluniRefprexp070416 can be downloaded here 
+   
+  http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Construction-           Advanced#3._Collecting_repetitive_sequences_by_RepeatModeler
+    
+    blastx -query ModelerUnknown.lib -db alluniRefprexp070416  -evalue 1e-10 -num_descriptions 10 \
+    -out ModelerUnknown.lib_blast_results.txt
+    
+    ProtExcluder.pl -option ModelerUnknown.lib_blast_results.txt  ModelerUnknown.lib
+    
+ ### Now obtain a fasta file from RepeatMasker. This program uses the database Dfam and RepeatDabase. Use all to search in the entire database
+ 
+    queryRepeatDatabase.pl -species all > repeatmasker.all.fa
+ 
+   Concatenate now the RepeatMasker database with the one generated manually above
+  
+    tail -n+2 repeatmasker.taxon.fa | cat - taxon.consensi.fa.classified > taxon.repeatlib.fa
+ 
+ ### Finally run RepeatMasker with this databse
+ 
+    RepeatMasker -pa 20 -q -lib taxon.repeatlib.fa -gff final_genome_tic23.fasta
+   
 # Gene annotation 
 
-    python run_BUSCO.py -r -i /home/icruz/data/ensamble_hibrido_teo1/merge/maker/final_genome_teotihuacan.fasta -o busco_finaldraft_genome_teotihuacan -l /home/icruz/data/sec_illumina_tic23/merge/quickmerge2/quickmerge3/quickmerge4/finish/MARKER/busco/solanaceae_odb10 -m geno Augustus v.3.2.2
+### Firt we trained the gene models with Ausgustus program
+
+    python run_BUSCO.py -r -i final_genome_tic23.fasta -o busco_finaldraft_genome_teotihuacan -l sonaceae_odb10 -m geno -         long      
 
 ### MAKER was run following this pipeline 
 
