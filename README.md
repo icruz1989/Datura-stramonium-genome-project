@@ -25,7 +25,7 @@
 
 ### Firts, we produced an assembly using only the longreads, Canu program is the option. Canu detects the number of cores 
 
-    canu -d ensamble_tic_pacbio -p datura_tic23 genomeSize=1.5g gridOptionscormhap="--mem=40g" merylMemory=62 batMemory=62 corMhapSensitivity=high correctedErrorRate=0.105 corOutCoverage=100 corMinCoverage=0 gridOptions="--time=168:00:00 --partition=FAST" gnuplotTested=true -pacbio-raw tic23.subreads.fastq 1>run2.log
+    canu -d ensamble_tic_pacbio -p datura_tic23 genomeSize=1.5g gridOptionscormhap="--mem=40g" merylMemory=62 batMemory=62         corMhapSensitivity=high correctedErrorRate=0.105 corOutCoverage=100 corMinCoverage=0 gridOptions="--time=168:00:00 --         partition=FAST" gnuplotTested=true -pacbio-raw tic23.subreads.fastq 1>run2.log
 
 ### At the same time, generate contigs only with the Illumina PE sequences using the SparseAssembler program. This will generate an assembly only with Illumina sequences. Kmergenie program used in the step above gives the best kmer to produce an assembly. Use this one to feed SparseAssembler
 
@@ -83,11 +83,12 @@
 
 ### All is ready for scaffolding, OPERA-LG uses the raw Illumina PE sequences, the genome and long reads
 
-    perl OPERA-long-read.pl --short-read-maptool bowtie2 --opera /LUSTRE/Genetica/ivan/bin_app/OPERA-LG_v2.0.6/bin —num-of-processors 5 --kmer 17 --contig-file consensus_tic_pilon1_arrow.fasta --illumina-read1 reads_1.fasta --illumina-read2 reads_2.fasta --long-read-file raw_reads_pacbio_tic.fasta --output-prefix opera_lr --output-directory RESULTS
+    perl OPERA-long-read.pl --short-read-maptool bowtie2 --opera /LUSTRE/Genetica/ivan/bin_app/OPERA-LG_v2.0.6/bin —num-of-       processors 5 --kmer 17 --contig-file consensus_tic_pilon1_arrow.fasta --illumina-read1 reads_1.fasta --illumina-read2         reads_2.fasta --long-read-file raw_reads_pacbio_tic.fasta --output-prefix opera_lr --output-directory RESULTS
 
-### A second polishing step with PILON but now to the last version of the genome (output from OPERA-LG)
+### Two polishing steps with PILON were carried out but now to the last version of the genome (output from OPERA-LG). Seesteps above
 
-### See results and for nuclear genome validation
+### Now its time to check the quality and completness of the final assembly
+   
    Quast gives you summary statistics
    
     quast.py genome.polished.draft.fasta
@@ -96,21 +97,49 @@
    
     python run_BUSCO.py -r -i final_genome_teotihuacan.fasta -o busco_finaldraft_genome_teotihuacan -l solanaceae_odb10 -m geno
 
-### Also a last alignment of the raw Illumina reads to the last version of the genome was carried out to obtain the alignment rates
-
-### Repetitive elements analysis
+# Repetitive elements analysis
 
 see http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Construction--Basic
 
-### Then repeat masker was run 
+### The firts step for repetitive elements identification is build a databse
 
-    RepeatMasker -pa 20 -dir finalrepeatmasker_genometicuman -q -species eukaryota -html -gff draffinal_genome_ticuman.fasta
+    BuildDatabase -engine ncbi -name datura GenomeTic.fa
+
+### Then use RepeatModeler to obtain specific repetitive elements ofe Datura genome
+    
+    RepeatModeler -database datura -engine ncbi -pa 32
+    
+### Repeatmodeler produces a consensi.fa.classified file with knows and unknows repetitive elements. Thus, to separete both of them we used
+
+    perl repeatmodeler_parse.pl --fastafile consensi.fa.classified --unknowns repeatmodeler_unknowns.fasta  \
+    --identities repeatmodeler_identities.fasta 
+
+#### Thus we obtained a file with only unknows sequences. These are searched against a transposase database and sequences matching transposase are considered as transposons belonging to the relevant superfamily and are incorporated into repeatmodeler_identities and excluded from repeatmodeler_unknowns. Once filtering is complete using the script transposon_blast_parse.pl the libraries ModelerUnknown.lib and ModelerID.lib are created. The trans database can be obtained downloaded from http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Construction-Advanced#3._Collecting_repetitive_sequences_by_RepeatModeler
+
+    makeblastdb -in Tpases020812  -dbtype prot
+    
+    blastx -query repeatmodeler_unknowns.fasta -db Tpases020812  -evalue 1e-10 -num_descriptions 10 -out                           modelerunknown_blast_results.txt
+    
+    transposon_blast_parse.pl --blastx <blastx output file> --modelerunknown <full path of the modeler unknown file>
+
+    RepeatMasker -pa 20 -q -lib taxon.repeatlib.fa -gff pilon.fasta
+    
+   Outputs:
+
+   identified_elements.txt
+
+   unknown_elements.txt
+
+   Rename/combine files from RepeatModeler using following commands:
+   
+    mv  unknown_elements.txt  ModelerUnknown.lib
+    cat  identified_elements.txt  repeatmodeler_identities.fasta  > ModelerID.lib
 
 ### plotting repeat landscape
 
-    RepeatMasker/util/calcDivergenceFromAlign.pl -s teo1.divsum -a teo1.align final_genome_teotihuacan.fasta.cat.gz &
+    calcDivergenceFromAlign.pl -s tic23.divsum -a teo1.align final_genome_teotihuacan.fasta.cat.gz
 
-    createRepeatLandscape.pl -g 1471881354 -div tic23.divsum > tic23_repeats.html &
+    createRepeatLandscape.pl -g 1471881354 -div tic23.divsum > tic23_repeats.html
 
 # Gene annotation 
 
