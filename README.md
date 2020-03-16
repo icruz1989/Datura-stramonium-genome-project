@@ -180,7 +180,6 @@ http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/MAKER_Tutorial_for_WGS_A
    
    - maker_bopt.ctl - contains filtering statistics for BLAST and Exonerate
    
-   contact: imda@ecologia.unam.mx
    - maker_opt.ctl - contains all other information for MAKER, including the location of the input genome filem input proteins      and transcripts and gene models
 
 ### Once these configuration files are filled, running MAKER is pretty easy. From the folder where you have stored the configuration files just type
@@ -319,3 +318,5 @@ https://github.com/asishallab/GeneFamilies/blob/master/exec/loadFubarResults.R
 Read also these scripts enrichedMapManInMappFams.R and enrichedAnnosInExpContrFams.R
 
 https://github.com/asishallab/SlydGeneFamsAnalyses/blob/icruz/exec/identifyDomainsAtSelectedSites.R
+
+   contact: imda@ecologia.unam.mx
