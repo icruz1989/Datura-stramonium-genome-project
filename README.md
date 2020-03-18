@@ -232,7 +232,9 @@ Link for AHRD program: https://github.com/asishallab/AHRD https://github.com/asi
 
 ### OrthoFinder program to construct Orthologs and paralogs, you can have proteins families from this program
 
-    orthofinder -S diamond -T fasttree -M msa -t 8 -a 8 -f /home/icruz/data/orthofinder_all/all_solanaceas__ortho_correction_CAFE/cafe_headers >& run.out &
+    orthofinder -S diamond -T fasttree -M msa -t 8 -a 8 -f cafe_headers >& run.out &
+    
+   cafe_headers es el folder donde estan almacenadas las proteinas
 
 ### Constructing an ultra metric three 
 
