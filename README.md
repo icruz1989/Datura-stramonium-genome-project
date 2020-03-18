@@ -244,7 +244,7 @@ Make your three ultrametric with the program of your preference, could be with t
 
 ### Protein families expansions and contractions
 
-CAFE needs two files to run, species tree and a file with this format:
+CAFE needs two files to run, species tree (netwick format) and a file with this format:
 
 An output from OrthoFinder2 is Orthogroups.GeneCount.csv, in this file you have to remove the column TOTAL (at the end) and add a first column in the file with the name "descriptions" (colums of this file should be separated by TAB). For instance, 
 
@@ -252,13 +252,13 @@ Rows are the gene families and the counts of the genes for each species
 
 Descriptions    ID  sp1     sp2     sp3.....
 
-IMPORTANT: For some weird reason OrthoFinder edit the names of the original files. Just edit this. CAFE needs short or concise names of the species, this same names should be edited in the species tree that OrthoFinder also gives. Same names most be for both files. Also, remove the nodes from the species tree. 
+IMPORTANT: For some weird reason OrthoFinder edits the names of the original files. Just edit this. CAFE needs short or concise names of the species, this same names should be edited in the species tree that OrthoFinder also gives. Same names most be for both files. Also, remove the nodes from the species tree. 
 
-This how netwick tree should looks
+This how the netwick tree should looks
 
 (Pi:35,(((Date:0.1,Dati:0.1):30,((Cag:1.3,Cam:1.3):17.7,(Stu:7.9,(Spe:3.6,(Sly:1.5,Spi:1.5):2.1):4.3):11.1):11):1,(Nto:10,(Nat:7,(Nsy:4.2,Ntab:4.2):2.7):3):21):4)
 
-Numbers are divergence times and nodes set from OrthoFinder were remove. Again this names most be the same as genecounts input
+Numbers are divergence times and node values were remove. Again this names most be the same as genecounts input
 
 Then you can run CAFE. A important step for filtering should be done. Use the file formated as above
 
