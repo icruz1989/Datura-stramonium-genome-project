@@ -250,6 +250,8 @@ An output from OrthoFinder2 is Orthogroups.GeneCount.csv, in this file you have 
 
 Descriptions    ID  sp1     sp2     sp3.....
 
+IMPORTANT: For some weird reason OrthoFinder edit the names of the original files. Just edit this. CAFE needs short or concise names of the species, this same names should be edited in the species tree that OrthoFinder also gives. Same names most be for both files. Also, remove the nodes from the species tree. 
+
 Then you can run CAFE. A important step for filtering should be done. Use the file formated as above
 
     cafetutorial_clade_and_size_filter.py -i cafe_all_sol.tab -o filtered_cafe_input_prueba.tab -s
