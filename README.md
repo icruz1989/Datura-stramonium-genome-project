@@ -244,9 +244,11 @@ Make your three ultrametric with the program of your preference, could be with t
 
 ### Protein families expansions and contractions
 
-CAFE needs two files to run, species tree and file with this formaat:
+CAFE needs two files to run, species tree and a file with this format:
 
-An output from OrthoFinder2 is Orthogroups.GeneCount.csv, in this file you have to remove the row from TOTAL and add a first column with descriptions (colums of this file should be separated by TAB). For instance, 
+An output from OrthoFinder2 is Orthogroups.GeneCount.csv, in this file you have to remove the column TOTAL (at the end) and add a first column in the file with the name "descriptions" (colums of this file should be separated by TAB). For instance, 
+
+Rows are the gene families and the counts of the genes for each species 
 
 Descriptions    ID  sp1     sp2     sp3.....
 
