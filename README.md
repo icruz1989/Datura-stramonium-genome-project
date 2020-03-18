@@ -234,8 +234,8 @@ Link for AHRD program: https://github.com/asishallab/AHRD https://github.com/asi
 
     orthofinder -S diamond -T fasttree -M msa -t 8 -a 8 -f cafe_headers >& run.out &
     
-   cafe_headers es el folder donde estan almacenadas las proteinas
-
+   cafe_headers is the folder were the proteins are stored. Each proteome of each species most be in fasta format
+   
 ### Constructing an ultra metric three 
 
 From OrthoFinder2 you obtain a species tree and a file with the gene families and gene counts in each family to CAFE (expansions and contractions)
