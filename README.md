@@ -238,13 +238,27 @@ Link for AHRD program: https://github.com/asishallab/AHRD https://github.com/asi
 
 ### Constructing an ultra metric three 
 
+From OrthoFinder2 you obtain a species tree and a file with the gene families and gene counts in each family to CAFE (expansions and contractions)
+
 Make your three ultrametric with the program of your preference, could be with the R package Ape and its Chronos function
 
-### Protein families expansions and contractions 
+### Protein families expansions and contractions
+
+CAFE needs two files to run, species tree and file with this formaat:
+
+An output from OrthoFinder2 is Orthogroups.GeneCount.csv, in this file you have to remove the row from TOTAL and add a first column with descriptions (colums of this file should be separated by TAB). For instance, 
+
+Descriptions    ID  sp1     sp2     sp3.....
+
+Then you can run CAFE. A important step for filtering should be done. Use the file formated as above
 
     cafetutorial_clade_and_size_filter.py -i cafe_all_sol.tab -o filtered_cafe_input_prueba.tab -s
 
-    cafe cafe_script_fil.sh
+Then you have to construct this script for CAFE an example is provided in this repository. Just type sh to run the script
+
+    sh cafe cafe_script_fil.sh
+
+Once CAFE has finished you can obtain using this script (also provided here) to obtains summary statistics
 
     cafetutorial_report_analysis.py -i resultfile_run2.cafe -o summary_run_2_cafe
 
