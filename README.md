@@ -288,7 +288,7 @@ First we have to retrieve all of the multiple sequence alignments and gene there
 
 https://github.com/asishallab/SlydGeneFamsAnalyses/blob/icruz/exec/readAndParseOrthogroupsTxt.R
 
-### Running MAPP en a loop mode for all gene families
+### Running MAPP in a loop mode for all gene families
 
     for d in *; do
     if [ -d "$d" ]; then         # or:  if test -d "$d"; then
