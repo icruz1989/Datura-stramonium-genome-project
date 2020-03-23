@@ -27,7 +27,7 @@
 
     canu -d ensamble_tic_pacbio -p datura_tic23 genomeSize=1.5g gridOptionscormhap="--mem=40g" merylMemory=62 batMemory=62         corMhapSensitivity=high correctedErrorRate=0.105 corOutCoverage=100 corMinCoverage=0 gridOptions="--time=168:00:00 --         partition=FAST" gnuplotTested=true -pacbio-raw tic23.subreads.fastq 1>run2.log
 
-### At the same time, generate contigs only with the Illumina PE sequences using the SparseAssembler program. This will generate an assembly only with Illumina sequences. Kmergenie program used in the step above gives the best kmer to produce an assembly. Use this one to feed SparseAssembler
+At the same time, generate contigs only with the Illumina PE sequences using the SparseAssembler program. This will generate an assembly only with Illumina sequences. Kmergenie program used in the step above gives the best kmer to produce an assembly. Use this one to feed SparseAssembler
 
     SparseAssembler LD 0 k 73 g 15 NodeCovTh 1 EdgeCovTh 0 GS 15000000 i1 output_Tic23_S155_L006_R1_001_paired.fastq i2 output_Tic23_S155_L006_R2_001_paired.fastq
 
@@ -121,7 +121,7 @@ see http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Const
     perl repeatmodeler_parse.pl --fastafile consensi.fa.classified --unknowns repeatmodeler_unknowns.fasta  \
     --identities repeatmodeler_identities.fasta 
 
-### Thus we obtained a file with only unknows sequences. These are searched against a transposase database and sequences matching transposase are considered as transposons belonging to the relevant superfamily and are incorporated into repeatmodeler_identities and excluded from repeatmodeler_unknowns. Once filtering is complete using the script transposon_blast_parse.pl the libraries ModelerUnknown.lib and ModelerID.lib are created. The trans database can be obtained downloaded from http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Construction-Advanced#3._Collecting_repetitive_sequences_by_RepeatModeler
+Thus we obtained a file with only unknows sequences. These are searched against a transposase database and sequences matching transposase are considered as transposons belonging to the relevant superfamily and are incorporated into repeatmodeler_identities and excluded from repeatmodeler_unknowns. Once filtering is complete using the script transposon_blast_parse.pl the libraries ModelerUnknown.lib and ModelerID.lib are created. The trans database can be obtained downloaded from http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Construction-Advanced#3._Collecting_repetitive_sequences_by_RepeatModeler
 
     makeblastdb -in Tpases020812  -dbtype prot
     
@@ -140,7 +140,7 @@ see http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/Repeat_Library_Const
     mv  unknown_elements.txt  ModelerUnknown.lib
     cat identified_elements.txt  repeatmodeler_identities.fasta  > ModelerID.lib
    
-### All repeats collected so far are used to search against a plant protein database where proteins from transposons are excluded. Elements with significant hits to genes are removed, along with 50 bp upstream and downstream of the blast hit. Remaining sequence that is less than 50 bp is removed completely. Outputs from this script are elements with no significant blast hits to the protein database and the remaining sequence from elements with blast hits that is greater than 50 bp. Use ProExcluder prograam for this purpose
+All repeats collected so far are used to search against a plant protein database where proteins from transposons are excluded. Elements with significant hits to genes are removed, along with 50 bp upstream and downstream of the blast hit. Remaining sequence that is less than 50 bp is removed completely. Outputs from this script are elements with no significant blast hits to the protein database and the remaining sequence from elements with blast hits that is greater than 50 bp. Use ProExcluder prograam for this purpose
    
    Database alluniRefprexp070416 can be downloaded here 
    
@@ -284,7 +284,7 @@ https://github.com/asishallab/SlydGeneFamsAnalyses/blob/icruz/exec/enrichedMapMa
 
 ### Running MAPP for physicochemical divergence 
 
-##### first we have to retrieve all of the multiple sequence alignments and gene therefore each protein family from Orthofinder results. OrthoFinder create two folders with all of the MSA and genes three. This script will do that and create a folder for each protein family storing both files (MSA and the gene three)
+First we have to retrieve all of the multiple sequence alignments and gene therefore each protein family from Orthofinder results. OrthoFinder create two folders with all of the MSA and genes three. This script will do that and create a folder for each protein family storing both files (MSA and the gene three)
 
 https://github.com/asishallab/SlydGeneFamsAnalyses/blob/icruz/exec/readAndParseOrthogroupsTxt.R
 
@@ -335,7 +335,7 @@ https://github.com/asishallab/SlydGeneFamsAnalyses/blob/icruz/exec/readAndParseO
 
     for d in *; do if [ -d "$d" ]; then ( cd "$d" && python parsejason_v2.py -f *_pal2nal_CDS.fa.FUBAR.json ); fi; done &> running_parseJSON.txt
 
-### Now you will have a txt file in each directory or folder with the sites under positive selection, the next step is to parse that file to just keep the sites with a byes factor > 100, significant posterior probabilities ≥ 0.98. Use this script for the purpose. 
+Now you will have a txt file in each directory or folder with the sites under positive selection, the next step is to parse that file to just keep the sites with a byes factor > 100, significant posterior probabilities ≥ 0.98. Use this script for the purpose. 
 
 https://github.com/asishallab/GeneFamilies/blob/master/exec/loadFubarResults.R
 
