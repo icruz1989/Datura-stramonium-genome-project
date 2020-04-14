@@ -281,6 +281,8 @@ The file mentioned above can be used to obtain and parse CAFE results; expanded 
 parseCafeResult.R in https://github.com/asishallab/SlydGeneFamsAnalyses/blob/icruz/exec
 
     Rscript path/2/GeneFamilies/exec/parseCafeResult.R path/2/summary_run_2_cafe_fams.txt path/2/SlydGeneFamsAnalyses/data
+    
+This script generates a file called "cafe_result.RData" where you cand find the expanded and contracted family just loading the dataframe
 
 ### Families with signal of expansion and contraction can be retrieve from CAFE outputs, then this script will carry out enrichment test in protein families with significant expansion and contraction 
 
