@@ -242,6 +242,8 @@ From OrthoFinder2 you obtain a species tree and a file with the gene families an
 
 Make your three ultrametric with the program of your preference, could be with the R package Ape and its Chronos function
 
+An example of R script to construct the ultrametric tree is provided in this rep. please see above
+
 ### Protein families expansions and contractions
 
 CAFE needs two files to run, species tree (netwick format) and a file with this format:
