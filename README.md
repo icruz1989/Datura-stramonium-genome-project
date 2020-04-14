@@ -274,6 +274,14 @@ Once CAFE has finished you can obtain using this script (also provided here) to 
 
     cafetutorial_report_analysis.py -i resultfile_run2.cafe -o summary_run_2_cafe
 
+Script above gives you a file called "summary_run_2_cafe_fams.txt"
+
+The file mentioned above can be used to obtain and parse CAFE results; expanded and contracted significant families using this R script
+
+parseCafeResult.R in https://github.com/asishallab/SlydGeneFamsAnalyses/blob/icruz/exec
+
+    Rscript path/2/GeneFamilies/exec/parseCafeResult.R path/2/summary_run_2_cafe_fams.txt path/2/SlydGeneFamsAnalyses/data
+
 ### Families with signal of expansion and contraction can be retrieve from CAFE outputs, then this script will carry out enrichment test in protein families with significant expansion and contraction 
 
 For InterPro function annotation (domains) 
