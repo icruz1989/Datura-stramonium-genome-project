@@ -1,57 +1,57 @@
 Annotation	P.Value.Adjusted	Annotation.Name
-IPR032675	4.31953694298039e-18	Leucine-rich repeat domain superfamily
-IPR003653	2.29378084276168e-07	Ulp1 protease family, C-terminal catalytic domain
-IPR036396	2.13429384731692e-10	Cytochrome P450 superfamily
-IPR002401	4.04762101080949e-12	Cytochrome P450, E-class, group I
-IPR001128	1.03369600351503e-10	Cytochrome P450
-IPR017972	1.40586084116303e-08	Cytochrome P450, conserved site
-IPR015410	7.01202585691436e-13	Domain of unknown function DUF1985
-IPR010987	3.42658865586369e-07	Glutathione S-transferase, C-terminal-like
-IPR040079	0.000454200597388884	Glutathione Transferase family
-IPR004045	9.95515917447727e-07	Glutathione S-transferase, N-terminal
-IPR004046	1.97188819657948e-05	Glutathione S-transferase, C-terminal
-IPR036282	1.10923398190436e-05	Glutathione S-transferase, C-terminal domain superfamily
-IPR036397	0.000396655431752803	Ribonuclease H superfamily
-IPR003480	0.000631016229923745	Transferase
-IPR023213	0.0032652645272855	Chloramphenicol acetyltransferase-like domain superfamily
-IPR008949	1.64679852792304e-05	Isoprenoid synthase domain superfamily
-IPR001810	1.1556973950776e-07	F-box domain
-IPR036047	2.09398570489204e-12	F-box-like domain superfamily
-IPR017451	1.78796851106414e-28	F-box associated interaction domain
-IPR036879	4.23506692043568e-25	Transcription factor, MADS-box superfamily
-IPR002100	4.23506692043568e-25	Transcription factor, MADS-box
-IPR012337	9.99930774455185e-05	Ribonuclease H-like superfamily
-IPR012340	8.42624280744015e-21	Nucleic acid-binding, OB-fold
-IPR036691	1.67632104628382e-09	Endonuclease/exonuclease/phosphatase superfamily
-IPR000194	6.85491717233846e-05	ATPase, F1/V1/A1 complex, alpha/beta subunit, nucleotide-binding domain
-IPR038376	4.86159448263943e-05	ATP synthase, alpha subunit, C-terminal domain superfamily
-IPR000793	7.714045402557e-05	ATP synthase, alpha subunit, C-terminal
-IPR001906	2.29518141489569e-07	Terpene synthase, N-terminal domain
-IPR036965	3.42658865586369e-07	Terpene synthase, N-terminal domain superfamily
-IPR008930	2.16375115984453e-07	Terpenoid cyclases/protein prenyltransferase alpha-alpha toroid
-IPR005630	2.28904153629255e-06	Terpene synthase, metal-binding domain
-IPR025558	1.55983230739787e-34	Domain of unknown function DUF4283
-IPR038005	1.12045922229659e-17	Virus X resistance protein-like, coiled-coil domain
-IPR041118	4.92846388343865e-09	Rx, N-terminal
-IPR002182	5.18402417579686e-21	NB-ARC
-IPR004001	6.61979273490284e-07	Actin, conserved site
-IPR020902	0.000433693682821452	Actin/actin-like conserved site
-IPR002156	1.07160548694934e-07	Ribonuclease H domain
-IPR034741	2.53359637491186e-06	Terpene cyclase-like 1, C-terminal domain
-IPR006534	0.00257373294285723	P-type ATPase, subfamily IIIA
-IPR006527	1.10923398190436e-05	F-box associated domain, type 1
-IPR000916	0.000902019207799057	Bet v I/Major latex protein
-IPR011043	0.00234048616451657	Galactose oxidase/kelch, beta-propeller
-IPR040256	1.54027555299478e-30	Uncharacterized protein At4g02000-like
-IPR023409	1.85318874938324e-05	14-3-3 protein, conserved site
-IPR036815	6.83510849452394e-05	14-3-3 domain superfamily
-IPR023410	6.83510849452394e-05	14-3-3 domain
-IPR000308	6.83510849452394e-05	14-3-3 protein
-IPR004252	7.01202585691436e-13	Probable transposase, Ptta/En/Spm, plant
-IPR023329	0.00663846128936449	Chlorophyll a/b binding domain superfamily
-IPR001344	0.00663846128936449	Chlorophyll A-B binding protein, plant
-IPR013955	9.74437245911314e-14	Replication factor A, C-terminal
-IPR004332	0.000125363456329572	Transposase, MuDR, plant
-IPR026960	4.86159448263943e-05	Reverse transcriptase zinc-binding domain
-IPR003871	2.96781657689533e-14	Domain of unknown function DUF223
-IPR013921	0.0023652715251673	Mediator complex, subunit Med20
+IPR032675	4.319E-18	Leucine-rich repeat domain superfamily
+IPR003653	2.293E-07	"Ulp1 protease family, C-terminal catalytic domain"
+IPR036396	2.134E-10	Cytochrome P450 superfamily
+IPR002401	4.047E-12	"Cytochrome P450, E-class, group I"
+IPR001128	1.033E-10	Cytochrome P450
+IPR017972	1.405E-08	"Cytochrome P450, conserved site"
+IPR015410	7.012E-13	Domain of unknown function DUF1985
+IPR010987	3.426E-07	"Glutathione S-transferase, C-terminal-like"
+IPR040079	4.542E-04	Glutathione Transferase family
+IPR004045	9.955E-07	"Glutathione S-transferase, N-terminal"
+IPR004046	1.971E-05	"Glutathione S-transferase, C-terminal"
+IPR036282	1.109E-05	"Glutathione S-transferase, C-terminal domain superfamily"
+IPR036397	3.966E-04	Ribonuclease H superfamily
+IPR003480	6.310E-04	Transferase
+IPR023213	3.265E-03	Chloramphenicol acetyltransferase-like domain superfamily
+IPR008949	1.646E-05	Isoprenoid synthase domain superfamily
+IPR001810	1.155E-07	F-box domain
+IPR036047	2.094E-12	F-box-like domain superfamily
+IPR017451	1.788E-28	F-box associated interaction domain
+IPR036879	4.235E-25	"Transcription factor, MADS-box superfamily"
+IPR002100	4.235E-25	"Transcription factor, MADS-box"
+IPR012337	9.999E-05	Ribonuclease H-like superfamily
+IPR012340	8.426E-21	"Nucleic acid-binding, OB-fold"
+IPR036691	1.676E-09	Endonuclease/exonuclease/phosphatase superfamily
+IPR000194	6.854E-05	"ATPase, F1/V1/A1 complex, alpha/beta subunit, nucleotide-binding domain"
+IPR038376	4.861E-05	"ATP synthase, alpha subunit, C-terminal domain superfamily"
+IPR000793	7.714E-05	"ATP synthase, alpha subunit, C-terminal"
+IPR001906	2.295E-07	"Terpene synthase, N-terminal domain"
+IPR036965	3.426E-07	"Terpene synthase, N-terminal domain superfamily"
+IPR008930	2.163E-07	Terpenoid cyclases/protein prenyltransferase alpha-alpha toroid
+IPR005630	2.289E-06	"Terpene synthase, metal-binding domain"
+IPR025558	1.559E-34	Domain of unknown function DUF4283
+IPR038005	1.120E-17	"Virus X resistance protein-like, coiled-coil domain"
+IPR041118	4.928E-09	"Rx, N-terminal"
+IPR002182	5.184E-21	NB-ARC
+IPR004001	6.619E-07	"Actin, conserved site"
+IPR020902	4.336E-04	Actin/actin-like conserved site
+IPR002156	1.071E-07	Ribonuclease H domain
+IPR034741	2.533E-06	"Terpene cyclase-like 1, C-terminal domain"
+IPR006534	2.573E-03	"P-type ATPase, subfamily IIIA"
+IPR006527	1.109E-05	"F-box associated domain, type 1"
+IPR000916	9.020E-04	Bet v I/Major latex protein
+IPR011043	2.340E-03	"Galactose oxidase/kelch, beta-propeller"
+IPR040256	1.540E-30	Uncharacterized protein At4g02000-like
+IPR023409	1.853E-05	"14-3-3 protein, conserved site"
+IPR036815	6.835E-05	14-3-3 domain superfamily
+IPR023410	6.835E-05	14-3-3 domain
+IPR000308	6.835E-05	14-3-3 protein
+IPR004252	7.012E-13	"Probable transposase, Ptta/En/Spm, plant"
+IPR023329	6.638E-03	Chlorophyll a/b binding domain superfamily
+IPR001344	6.638E-03	"Chlorophyll A-B binding protein, plant"
+IPR013955	9.744E-14	"Replication factor A, C-terminal"
+IPR004332	1.253E-04	"Transposase, MuDR, plant"
+IPR026960	4.861E-05	Reverse transcriptase zinc-binding domain
+IPR003871	2.967E-14	Domain of unknown function DUF223
+IPR013921	2.365E-03	"Mediator complex, subunit Med20"
