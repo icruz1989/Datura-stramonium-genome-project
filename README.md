@@ -274,6 +274,8 @@ Once CAFE has finished you can obtain using this script (also provided here) to 
 
     cafetutorial_report_analysis.py -i resultfile_run2.cafe -o summary_run_2_cafe
 
+** This script only run within the folder with all the scripts from tutorial of CAFE
+
 Script above gives you a file called "summary_run_2_cafe_fams.txt"
 
 The file mentioned above can be used to obtain and parse CAFE results; expanded and contracted significant families using this R script
