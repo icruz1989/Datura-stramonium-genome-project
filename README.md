@@ -2,6 +2,8 @@
 
 * This is the workflow that was followed to assembly and annotate the genome of *Datura stramonium* and for comparative genomics with 13 Solanaceae species. Many programs have been used and links of some of them have been stored here. Also, other pipelines have been followed and a link of each one will be found in this workflow. 
 
+Zenodo:             [![DOI](https://zenodo.org/badge/236494037.svg)](https://zenodo.org/badge/latestdoi/236494037)
+
 
 ### Firts step is trimming poor quality sequences
 
