@@ -214,7 +214,7 @@ MAKER was run four times, each time was changed the gene models predicted from t
 
     gff3_sp_extract_sequences.pl -t cds --cfs -g s.pimp.mgm.FINAL.gff -f tomato-scaffolds.abyss.77.fasta -o cds_solpi.fasta &
 
-### AED quality filtering was done using the script from MAKER: quality_filter.pl 
+### AED quality filtering was done using the script from MAKER: quality_filter.pl (a copy is enclosed in this repository)
 
 available here: https://groups.google.com/forum/#!searchin/maker-devel/quality_filter.pl%7Csort:relevance/maker-devel/LC4STWWlwgo/XV4nhGiHsfIJ
 
