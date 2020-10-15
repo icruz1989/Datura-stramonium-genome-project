@@ -224,10 +224,10 @@ Generate dbs for merqry program Quality values of the assemblies
 
 Finding best kmer
 
-        sh best_k.sh <genome_size> [tolerable_collision_rate=0.001]
+       sh best_k.sh <genome_size> [tolerable_collision_rate=0.001]
 
 
-        for f in *.fq; do meryl k=21 count output ${f%\.*}.meryl ${f%\.*}.fq; done &
+       for f in *.fq; do meryl k=21 count output ${f%\.*}.meryl ${f%\.*}.fq; done &
 
 For one sample
 
@@ -235,7 +235,7 @@ For one sample
 
 Merge
 
-        /LUSTRE/Genetica/ivan/bin_app/merqury/build/union_sum.sh 21 meryl.list genome.meryl &
+        union_sum.sh 21 meryl.list genome.meryl &
 
 Meryl.list correspont to boh .meryl directories from the previous round
 
@@ -254,12 +254,11 @@ Running merqry
 
 ###### Testing both genomes fom TEO y TIC with the K-mers dbs constructed from the TEO illumina reads ########
 
-$ nohup /LUSTRE/Genetica/ivan/bin_app/merqury/merqury.sh read_db.meryl genomeTic.fasta genomeTeo.fasta test 
-
+    merqury.sh read_db.meryl genomeTic.fasta genomeTeo.fasta test 
 
 Plotting
 
-Rscript /LUSTRE/Genetica/ivan/bin_app/merqury/plot/plot_spectra_asm.R -f test.spectra-asm.hist -o test.spectra-asm.hist.png
+    Rscript plot_spectra_asm.R -f test.spectra-asm.hist -o test.spectra-asm.hist.png
 
 ### Functional annotation was done using the MAKER proteins and transcripts. Names of the genes were edited using the program AHRD, alternative annotation was done using Mercartor with the database MapMan4
 
