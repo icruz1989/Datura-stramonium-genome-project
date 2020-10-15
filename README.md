@@ -218,6 +218,49 @@ MAKER was run four times, each time was changed the gene models predicted from t
 
 available here: https://groups.google.com/forum/#!searchin/maker-devel/quality_filter.pl%7Csort:relevance/maker-devel/LC4STWWlwgo/XV4nhGiHsfIJ
 
+### Running meryl for genome assembly quality value 
+
+Generate dbs for merqry program Quality values of the assemblies
+
+Finding best kmer
+
+        sh best_k.sh <genome_size> [tolerable_collision_rate=0.001]
+
+
+        for f in *.fq; do meryl k=21 count output ${f%\.*}.meryl ${f%\.*}.fq; done &
+
+For one sample
+
+        meryl count k=21 output_Tic23_S155_L006_R1_001_paired.fastq output tic23_1.meryl  
+
+Merge
+
+        /LUSTRE/Genetica/ivan/bin_app/merqury/build/union_sum.sh 21 meryl.list genome.meryl &
+
+Meryl.list correspont to boh .meryl directories from the previous round
+
+The output is a database with all the read together, index. check that the directory ends with .meryl
+
+It is very important to set all the programs in path 
+
+export PATH="/LUSTRE/Genetica/ivan/bin_app/merqury:$PATH"
+export PATH=/LUSTRE/Genetica/ivan/bin_app/meryl-1.0/Linux-amd64/bin:$PATH
+cd bin_app/merqury/
+export MERQURY=$PWD
+
+Running merqry
+
+           merqury.sh read_db.meryl asm1.fasta test &
+
+###### Testing both genomes fom TEO y TIC with the K-mers dbs constructed from the TEO illumina reads ########
+
+$ nohup /LUSTRE/Genetica/ivan/bin_app/merqury/merqury.sh read_db.meryl genomeTic.fasta genomeTeo.fasta test 
+
+
+Plotting
+
+Rscript /LUSTRE/Genetica/ivan/bin_app/merqury/plot/plot_spectra_asm.R -f test.spectra-asm.hist -o test.spectra-asm.hist.png
+
 ### Functional annotation was done using the MAKER proteins and transcripts. Names of the genes were edited using the program AHRD, alternative annotation was done using Mercartor with the database MapMan4
 
 A comprenhensive tutorial for funtional annotations is found in below links
