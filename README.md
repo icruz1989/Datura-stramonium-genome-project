@@ -212,7 +212,7 @@ MAKER was run four times, each time was changed the gene models predicted from t
     
  ### Alternative, these scripts are very useful to obtain proteins and CDS from gff3 format files 
 
-   scripts are part of https://github.com/NBISweden/GAAS
+   scripts are part of https://github.com/NBISweden/AGAT (Previously in [GAAS](https://github.com/NBISweden/GAAS/tree/v0.1) until v0.1 November 2019)
 
     gff3_sp_extract_sequences.pl -gff Final_just_genemodels_tic23_AED_0.5 -f draffinal_genome_ticuman.fasta -p -o       mkr_snap3_final.all.maker.proteins_extractions.fasta 
 
@@ -252,7 +252,7 @@ export PATH=/LUSTRE/Genetica/ivan/bin_app/meryl-1.0/Linux-amd64/bin:$PATH
 cd bin_app/merqury/
 export MERQURY=$PWD
 
-Running merqry
+Running merqury
 
            merqury.sh read_db.meryl asm1.fasta test &
 
