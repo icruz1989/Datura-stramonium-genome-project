@@ -214,7 +214,7 @@ MAKER was run four times, each time was changed the gene models predicted from t
 
    scripts are part of https://github.com/NBISweden/AGAT (Previously in [GAAS](https://github.com/NBISweden/GAAS/tree/v0.1) until v0.1 November 2019)
 
-    gff3_sp_extract_sequences.pl -gff Final_just_genemodels_tic23_AED_0.5 -f draffinal_genome_ticuman.fasta -p -o       mkr_snap3_final.all.maker.proteins_extractions.fasta 
+    gff3_sp_extract_sequences.pl -gff Final_just_genemodels_tic23_AED_0.5 -f draffinal_genome_ticuman.fasta -p -o   mkr_snap3_final.all.maker.proteins_extractions.fasta 
 
     gff3_sp_extract_sequences.pl -t cds --cfs -g s.pimp.mgm.FINAL.gff -f tomato-scaffolds.abyss.77.fasta -o cds_solpi.fasta &
 
@@ -247,10 +247,10 @@ The output is a database with all the read together, index. check that the direc
 
 It is very important to set all the programs in path 
 
-export PATH="/LUSTRE/Genetica/ivan/bin_app/merqury:$PATH"
-export PATH=/LUSTRE/Genetica/ivan/bin_app/meryl-1.0/Linux-amd64/bin:$PATH
-cd bin_app/merqury/
-export MERQURY=$PWD
+    export PATH="/LUSTRE/Genetica/ivan/bin_app/merqury:$PATH"
+    export PATH=/LUSTRE/Genetica/ivan/bin_app/meryl-1.0/Linux-amd64/bin:$PATH
+    cd bin_app/merqury/
+    export MERQURY=$PWD
 
 Running merqury
 
